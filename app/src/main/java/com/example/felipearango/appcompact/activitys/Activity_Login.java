@@ -53,7 +53,7 @@ public class Activity_Login extends AppCompatActivity  implements View.OnClickLi
     private void verificaSignIn(){
         FirebaseUser user = mAuth.getCurrentUser();
         if(mAuth.getCurrentUser() != null){
-          //  startActivity(new Intent(getApplicationContext(), Activity_Principal.class));
+            startActivity(new Intent(getApplicationContext(), Activity_Principal.class));
             Toast.makeText(getApplicationContext(), "Sesion iniciada con email: " + user.getEmail(), Toast.LENGTH_LONG).show();
         }
     }
