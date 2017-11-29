@@ -29,7 +29,8 @@
             android:drawablePadding="10dp"
             android:hint="E-mail"
             android:paddingLeft="5dp"
-            android:textColorHint="@color/colorAccent" />
+            android:textColorHint="@color/colorAccent"
+            android:id="@+id/txtRegistroEmail"/>
         <!-- android:drawableStart="@mipmap/ic_user"-->
         <EditText
             android:layout_width="match_parent"
@@ -41,7 +42,8 @@
             android:drawableStart="@mipmap/ic_padlock"
             android:hint="Contraseña"
             android:paddingLeft="5dp"
-            android:textColorHint="@color/colorAccent" />
+            android:textColorHint="@color/colorAccent"
+            android:id="@+id/txtRegistroPass"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -54,7 +56,8 @@
             android:hint="Confirmar contraseña"
             android:paddingLeft="5dp"
             android:textColorHint="@color/colorAccent"
-            android:drawableLeft="@mipmap/ic_padlock" />
+            android:drawableLeft="@mipmap/ic_padlock"
+            android:id="@+id/txtRegistroConfirPass"/>
 
         <Spinner
             android:layout_margin="10dp"
@@ -64,7 +67,8 @@
             android:layout_weight="15"
             android:background="@drawable/edittext_style"
             android:drawableStart="@mipmap/ic_chooser"
-            android:drawableLeft="@mipmap/ic_chooser">
+            android:drawableLeft="@mipmap/ic_chooser"
+            android:id="@+id/spnTipoUser">
 
         </Spinner>
 
@@ -77,7 +81,8 @@
             android:background="@drawable/buttonlogin_style"
             android:text="Registrar"
             android:textColor="@color/colorAccent"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:id="@+id/btnRegisterUser"/>
 
 
 </LinearLayout>

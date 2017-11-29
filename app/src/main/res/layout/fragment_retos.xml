@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Regístrata tu reto!"
+        android:textColor="@color/colorGreenBackground"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <!-- android:drawableStart="@mipmap/ic_user"-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawablePadding="10dp"
+        android:hint="Nombre reto"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/colorAccent"
+        android:id="@+id/txtNombreReto"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawablePadding="10dp"
+        android:hint="descripcion reto"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/colorAccent"
+        android:id="@+id/txtDescripcionReto"/>
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_chooser"
+        android:drawableLeft="@mipmap/ic_chooser"
+        android:id="@+id/spnTipoReto">
+
+    </Spinner>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawablePadding="10dp"
+        android:hint="fecha entrega"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/colorAccent"
+        android:id="@+id/txtFechaEntrega"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawablePadding="10dp"
+        android:hint="integrante"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/colorAccent"
+        android:id="@+id/txtIntegrante"/>
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_chooser"
+        android:drawableLeft="@mipmap/ic_chooser"
+        android:id="@+id/spnTipoEntrega">
+
+    </Spinner>
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_chooser"
+        android:drawableLeft="@mipmap/ic_chooser"
+        android:id="@+id/spnPrivacidad">
+
+    </Spinner>
+
+</LinearLayout>

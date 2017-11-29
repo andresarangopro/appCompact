@@ -54,7 +54,8 @@
         android:layout_weight="5"
         android:gravity="center_horizontal"
         android:text="¿Olvidaste tú contraseña?"
-        android:textColor="@color/colorSubText" />
+        android:textColor="@color/colorSubText"
+        android:id="@+id/tvOlvidasteContraseña"/>
 
     <Button
         android:id="@+id/btnIngresar"
@@ -77,6 +78,7 @@
         android:text="¡Regístrate!"
         android:textColor="@color/colorAccent"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:id="@+id/tvRegistrate"/>
 
 </LinearLayout>

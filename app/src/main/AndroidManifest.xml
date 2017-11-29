@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activitys.Activity_Register" />
-        <activity android:name=".activitys.Activity_Principal" />
+        <activity
+            android:name=".activitys.Activity_Principal"
+            android:label="Activity_Principal"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
