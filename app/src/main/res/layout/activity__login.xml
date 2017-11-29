@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="com.example.felipearango.appcompact.activitys.Activity_Login">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="30"/>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_margin="10dp"
+        android:paddingLeft="5dp"
+        android:layout_weight="15"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textColorHint="@color/colorAccent"
+        android:drawablePadding="10dp"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_user"
+        android:hint="E-mail"
+        android:drawableLeft="@mipmap/ic_user" />
+       <!-- android:drawableStart="@mipmap/ic_user"-->
+
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_margin="10dp"
+        android:paddingLeft="5dp"
+        android:layout_weight="15"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textColorHint="@color/colorAccent"
+        android:drawablePadding="10dp"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_padlock"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:drawableLeft="@mipmap/ic_padlock" />
+
+
+    <TextView
+        android:textSize="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="13dp"
+        android:layout_weight="5"
+        android:gravity="center_horizontal"
+        android:text="¿Olvidaste tú contraseña?"
+        android:textColor="@color/colorSubText" />
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="15"
+        android:background="@drawable/buttonlogin_style"
+        android:text="Ingresa" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="7"
+        android:gravity="center_horizontal"
+        android:text="¡Regístrate!"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</LinearLayout>

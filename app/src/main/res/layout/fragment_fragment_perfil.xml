@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreenBackground"
+    android:weightSum="100"
+    android:orientation="vertical"
+    tools:context="com.example.android.blocks.Activities.activitys.FragmentPerfil">
+
+    <LinearLayout
+        android:layout_weight="30"
+        android:weightSum="100"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+
+            android:background="@mipmap/ic_launcher" />
+        <TextView
+            android:textSize="35dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/colorYellow"
+            android:text="Nombre"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/colorAccentDark"
+        android:layout_weight="70"
+        android:weightSum="100"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="5"
+            android:paddingLeft="20dp"
+            android:text="Información"
+            android:textColor="@color/colorAccent" />
+        
+        <FrameLayout
+            android:layout_margin="20dp"
+            android:background="@color/colorAccent"
+            android:layout_weight="95"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                </LinearLayout>
+
+            </ScrollView>
+        </FrameLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>
