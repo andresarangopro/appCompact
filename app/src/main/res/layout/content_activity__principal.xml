@@ -9,4 +9,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.blocks.Activities.activitys.Activity_Principal"
     tools:showIn="@layout/app_bar_activity__principal">
+
+    <Button
+        android:id="@+id/btnFragReto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="publicar reto" />
 </FrameLayout>

@@ -9,11 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.clases.Reto;
+import com.example.felipearango.appcompact.models.ManejoUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +27,8 @@ import com.example.felipearango.appcompact.R;
  * Use the {@link FragmentRetos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRetos extends Fragment implements AdapterView.OnItemSelectedListener {
+public class FragmentRetos extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,10 +67,12 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     ////////////////////////////////////
     EditText txtNombre, txtDescripcion, txtFecha, txtIntegrante;
     Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega;
+    Button btnPublicarReto;
     String [] tiposReto = {"Seleccione el tipo de reto", "Reto elite", "Reto aula", "Reto rally"};
     String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "Publico", "privado"};
     String [] tiposEntrega = {"Seleccione el formato de entrega", "Video", "Imagenes", "Documentos"};
     String tReto, tPrivacidad, tEntrega;
+    ManejoUser mu = new ManejoUser();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +81,6 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        initComponents();
-
 
     }
 
@@ -83,7 +88,20 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_retos, container, false);
+        View view = inflater.inflate(R.layout.fragment_retos, container, false);
+
+        txtNombre = (EditText) view.findViewById(R.id.txtNombreReto);
+        txtDescripcion = (EditText) view.findViewById(R.id.txtDescripcionReto);
+        txtFecha = (EditText) view.findViewById(R.id.txtFechaEntrega);
+        txtIntegrante = (EditText) view.findViewById(R.id.txtIntegrante);
+        spnTipoReto =(Spinner) view.findViewById(R.id.spnTipoReto);
+        spnTipoEntrega =(Spinner) view.findViewById(R.id.spnTipoEntrega);
+        spnPrivacidad =(Spinner) view.findViewById(R.id.spnPrivacidad);
+        btnPublicarReto = (Button) view.findViewById(R.id.btnPublicarReto);
+        btnPublicarReto.setOnClickListener(this);
+        initSpinners();
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -170,6 +188,18 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnPublicarReto:
+                Toast.makeText(getContext(), "Funciona", Toast.LENGTH_LONG).show();
+                Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, txtFecha.getText().toString(),
+                        txtIntegrante.getText().toString(), tEntrega, tPrivacidad);
+                String idJob = mu.databaseReference.push().getKey();
+                mu.insertar("Retos", idJob, reto);
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -185,14 +215,10 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         void onFragmentInteraction(Uri uri);
     }
 
-    private void initComponents(){
-        txtNombre = (EditText) getView().findViewById(R.id.txtNombreReto);
-        txtDescripcion = (EditText) getView().findViewById(R.id.txtDescripcionReto);
-        txtFecha = (EditText) getView().findViewById(R.id.txtFechaEntrega);
-        txtIntegrante = (EditText) getView().findViewById(R.id.txtIntegrante);
-        spnTipoReto =(Spinner) getView().findViewById(R.id.spnTipoReto);
-        spnTipoEntrega =(Spinner) getView().findViewById(R.id.spnTipoEntrega);
-        spnPrivacidad =(Spinner) getView().findViewById(R.id.spnPrivacidad);
+    /**
+     * Metodo para inicializar los spinners
+     */
+    private void initSpinners(){
         spnTipoReto.setOnItemSelectedListener(this);
         spnPrivacidad.setOnItemSelectedListener(this);
         spnTipoEntrega.setOnItemSelectedListener(this);

@@ -1,5 +1,7 @@
 package com.example.felipearango.appcompact.activitys;
 
+import android.net.Uri;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.felipearango.appcompact.R;
 
 public class Activity_Principal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,18 @@ public class Activity_Principal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        final FragmentRetos fragmentRetos = new FragmentRetos();
+
+        Button btnPublicarReto = (Button) findViewById(R.id.btnFragReto);
+        btnPublicarReto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+                transition.replace(R.id.FrFragments, fragmentRetos);
+                transition.commit();
+            }
+        });
     }
 
     @Override
@@ -87,5 +103,10 @@ public class Activity_Principal extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

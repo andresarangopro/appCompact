@@ -109,4 +109,16 @@
 
     </Spinner>
 
+    <Button
+        android:id="@+id/btnPublicarReto"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="15"
+        android:background="@color/colorAccentDark"
+        android:text="Publicar reto" />
+
 </LinearLayout>
