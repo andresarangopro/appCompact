@@ -1,23 +1,33 @@
 package com.example.felipearango.appcompact.activitys;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import java.util.ArrayList;
 
@@ -31,10 +41,19 @@ import java.util.ArrayList;
  */
 public class FragmentRetos extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
+
+    private RecyclerView mRecyclerDates;
+    private RecyclerAdapterDates mDates;
+    private ArrayList<String> mData = new ArrayList<>();
+    private LinearLayoutManager mLinearLayoutManager;
+    private Calendar myCalendar = Calendar.getInstance();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,7 +88,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     ////////////////////////////////////
     EditText txtNombre, txtDescripcion, txtFecha, txtIntegrante;
     Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega;
-    Button btnPublicarReto;
+    Button btnPublicarReto, addDate;
     String [] tiposReto = {"Seleccione el tipo de reto", "Reto elite", "Reto aula", "Reto rally"};
     String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "Publico", "privado"};
     String [] tiposEntrega = {"Seleccione el formato de entrega", "Video", "Imagenes", "Documentos"};
@@ -94,7 +113,10 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
 
         txtNombre = (EditText) view.findViewById(R.id.txtNombreReto);
         txtDescripcion = (EditText) view.findViewById(R.id.txtDescripcionReto);
-        txtFecha = (EditText) view.findViewById(R.id.txtFechaEntrega);
+        txtFecha = (EditText) view.findViewById(R.id.etDates);
+        txtFecha.setOnClickListener(this);
+        addDate = view.findViewById(R.id.btnAdd);
+        addDate.setOnClickListener(this);
         txtIntegrante = (EditText) view.findViewById(R.id.txtIntegrante);
         spnTipoReto =(Spinner) view.findViewById(R.id.spnTipoReto);
         spnTipoEntrega =(Spinner) view.findViewById(R.id.spnTipoEntrega);
@@ -106,7 +128,26 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         integrantes.add("el");
         integrantes.add("ella");
 
+        //Recycler -----------------------------
+
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerDates = view.findViewById(R.id.rv_fechas);
+        mRecyclerDates.setLayoutManager(mLinearLayoutManager);
+        mDates = new RecyclerAdapterDates(getContext(), mData);
+        mRecyclerDates.setAdapter(mDates);
+
+        //Calendar -------------------------------------------
+
+
+
         return view;
+    }
+
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        txtFecha.setText(sdf.format(myCalendar.getTime()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -196,12 +237,45 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnPublicarReto:
+            case R.id.btnPublicarReto:{
                 Toast.makeText(getContext(), "Funciona", Toast.LENGTH_LONG).show();
                 Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, txtFecha.getText().toString(),
                         integrantes, tEntrega, tPrivacidad);
                 String idJob = mu.databaseReference.push().getKey();
                 mu.insertar("Retos", idJob, reto);
+                break;
+            }
+            case R.id.btnAdd:{
+                int position = 0;
+
+                mData.add(position, txtFecha.getText().toString());
+                mDates.notifyItemInserted(position);
+                mDates.notifyDataSetChanged();
+                mRecyclerDates.scrollToPosition(position);
+                Toast.makeText(getContext(), "Agregada entrega", Toast.LENGTH_SHORT).show();
+                txtFecha.setText("");
+                break;
+            }
+            case R.id.etDates:{
+
+                DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                          int dayOfMonth) {
+                        // TODO Auto-generated method stub
+                        myCalendar.set(Calendar.YEAR, year);
+                        myCalendar.set(Calendar.MONTH, monthOfYear);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        updateLabel();
+                    }
+
+                };
+
+                new DatePickerDialog(getContext(), AlertDialog.THEME_HOLO_LIGHT, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
         }
     }
 
