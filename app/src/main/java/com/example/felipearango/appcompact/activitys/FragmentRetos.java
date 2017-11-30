@@ -19,6 +19,8 @@ import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.ManejoUser;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -73,7 +75,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     String [] tiposEntrega = {"Seleccione el formato de entrega", "Video", "Imagenes", "Documentos"};
     String tReto, tPrivacidad, tEntrega;
     ManejoUser mu = new ManejoUser();
-
+    ArrayList<String> integrantes = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +102,9 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         btnPublicarReto = (Button) view.findViewById(R.id.btnPublicarReto);
         btnPublicarReto.setOnClickListener(this);
         initSpinners();
+        integrantes.add("yo");
+        integrantes.add("el");
+        integrantes.add("ella");
 
         return view;
     }
@@ -194,7 +199,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
             case R.id.btnPublicarReto:
                 Toast.makeText(getContext(), "Funciona", Toast.LENGTH_LONG).show();
                 Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, txtFecha.getText().toString(),
-                        txtIntegrante.getText().toString(), tEntrega, tPrivacidad);
+                        integrantes, tEntrega, tPrivacidad);
                 String idJob = mu.databaseReference.push().getKey();
                 mu.insertar("Retos", idJob, reto);
         }
