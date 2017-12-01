@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.Entregable;
@@ -25,13 +24,13 @@ import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +40,22 @@ import java.util.ArrayList;
  * Use the {@link FragmentRetos#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentRetos extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class FragmentRetos extends Fragment implements View.OnClickListener {
+
+    /////////////////////////////////////
+    //Variables
+    ////////////////////////////////////
+    EditText txtNombre, txtDescripcion, txtFecha, txtNumIntegrante;
+    Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega, spnIndividualGrupo;
+    Button btnPublicarReto, addDate;
+    String [] tiposReto = {"Seleccione el tipo de reto", "elite", "aula", "rally"};
+    String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "publico", "privado"};
+    String [] tiposEntrega = {"Seleccione el formato de entrega", "video", "imagenes", "documentos"};
+    String [] individualGrupo = {"Reto individual o en grupo?", "individual", "grupo"};
+    ManejoUser mu = new ManejoUser();
+    ArrayList<String> lstFechas = new ArrayList<>();
+    ArrayList<String> lstEntregas = new ArrayList<>();
+    FirebaseAuth mAuth;
 
 
     private RecyclerView mRecyclerDates;
@@ -85,19 +99,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         return fragment;
     }
 
-    /////////////////////////////////////
-    //Variables
-    ////////////////////////////////////
-    EditText txtNombre, txtDescripcion, txtFecha, txtNumIntegrante;
-    Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega, spnIndividualGrupo;
-    Button btnPublicarReto, addDate;
-    String [] tiposReto = {"Seleccione el tipo de reto", "Reto elite", "Reto aula", "Reto rally"};
-    String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "Publico", "privado"};
-    String [] tiposEntrega = {"Seleccione el formato de entrega", "Video", "Imagenes", "Documentos"};
-    String [] individualGrupo = {"Reto individual o en grupo?", "Individual", "Grupo"};
-    String tReto, tPrivacidad, tEntrega, individualOGrupo;
-    ManejoUser mu = new ManejoUser();
-    ArrayList<String> integrantes = new ArrayList<>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +115,8 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_retos, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
 
         txtNombre = (EditText) view.findViewById(R.id.txtNombreReto);
         txtDescripcion = (EditText) view.findViewById(R.id.txtDescripcionReto);
@@ -175,88 +179,27 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         mListener = null;
     }
 
-    /**
-     * Metodo para identificar que item me seleccionan en cada spinner
-     * @param parent idSpinner
-     * @param view
-     * @param position
-     * @param l
-     */
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-        switch(parent.getId()){
-            case R.id.spnTipoEntrega:
-                switch (position){
-                    case 0:
-                        tEntrega = null;
-                        break;
-                    case 1:
-                        tEntrega = "video";
-                        break;
-                    case 2:
-                        tEntrega = "imagenes";
-                        break;
-                    case 3:
-                        tEntrega = "documentos";
-                        break;
-                }
-            case R.id.spnPrivacidad:
-                switch (position){
-                    case 0:
-                        tPrivacidad = null;
-                        break;
-                    case 1:
-                        tPrivacidad = "publico";
-                        break;
-                    case 2:
-                        tPrivacidad = "privado";
-                        break;
-                }
-            case R.id.spnTipoReto:
-                switch (position){
-                    case 0:
-                        tEntrega = null;
-                        break;
-                    case 1:
-                        tReto = "elite";
-                        break;
-                    case 2:
-                        tReto = "aula";
-                        break;
-                    case 3:
-                        tReto = "rally";
-                        break;
-                }
-            case R.id.spnIndividualGrupo:
-                switch (position){
-                    case 0:
-                        individualOGrupo = null;
-                        break;
-                    case 1:
-                        individualOGrupo = "individual";
-                        break;
-                    case 2:
-                        individualOGrupo = "grupo";
-                        break;
-                }
-        }
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnPublicarReto:{
-                mData.add(0, txtFecha.getText().toString());
-                Toast.makeText(getContext(), mData.toString(), Toast.LENGTH_LONG).show();
-                Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, mData,
-                        txtNumIntegrante.getText().toString(), tEntrega, tPrivacidad, individualOGrupo);
-                String idJob = mu.databaseReference.push().getKey();
-                mu.insertar("Retos", idJob, reto);
+                if(validarCampos()) {
+                    Entregable entregable = new Entregable(txtFecha.getText().toString(), spnTipoEntrega.getSelectedItem().toString());
+                    mData.add(0, entregable);
+                    llenarListas();
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    Reto reto = new Reto(user.getEmail(), txtNombre.getText().toString(), txtDescripcion.getText().toString(), spnTipoReto.getSelectedItem().toString(), lstFechas,
+                            txtNumIntegrante.getText().toString(), lstEntregas, spnPrivacidad.getSelectedItem().toString(), spnIndividualGrupo.getSelectedItem().toString());
+                    String idJob = mu.databaseReference.push().getKey();
+                    mu.insertar("Retos", idJob, reto);
+                    mData.clear();
+                    lstEntregas.clear();
+                    lstFechas.clear();
+                    Toast.makeText(getContext(), "Reto publicado", Toast.LENGTH_LONG).show();
+                }
                 break;
             }
             case R.id.btnAdd:{
@@ -320,10 +263,6 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
      * Metodo para inicializar los spinners
      */
     private void initSpinners(){
-        spnTipoReto.setOnItemSelectedListener(this);
-        spnPrivacidad.setOnItemSelectedListener(this);
-        spnTipoEntrega.setOnItemSelectedListener(this);
-        spnIndividualGrupo.setOnItemSelectedListener(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, tiposReto);
         spnTipoReto.setAdapter(adapter);
@@ -336,5 +275,44 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, individualGrupo);
         spnIndividualGrupo.setAdapter(adapter3);
+    }
+
+    /**
+     * Metodo para llenar las listas de fechas y tipos de entrega
+     */
+    private void llenarListas(){
+        for (Entregable entregable:
+             mData) {
+            lstFechas.add(entregable.getFecha());
+            lstEntregas.add(entregable.getTipo());
+        }
+    }
+
+    private boolean validarCampos(){
+        if(txtNombre.getText().toString().isEmpty()){
+            txtNombre.setError("Por favor ingrese el nombre del reto");
+            return false;
+        } else if(txtDescripcion.getText().toString().isEmpty()){
+            txtDescripcion.setError("Por favor ingrese la descripcion del reto");
+            return false;
+        } else if(spnTipoReto.getSelectedItemPosition() == 0){
+            Toast.makeText(getActivity(), "Por favor seleccione el tipo de reto que va ingresar", Toast.LENGTH_LONG).show();
+            return false;
+        }else if(txtFecha.getText().toString().isEmpty()){
+            txtFecha.setError("Por favor ingrese la fecha de entrega del reto");
+            return false;
+        } else if(spnTipoEntrega.getSelectedItemPosition() == 0){
+            Toast.makeText(getActivity(), "Por favor seleccione el formato de entrega", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (spnIndividualGrupo.getSelectedItemPosition() == 0){
+            Toast.makeText(getActivity(), "Por favor seleccione si el reto se podra realizar individual o en grupo", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (txtNumIntegrante.getText().toString().isEmpty()){
+            txtNumIntegrante.setError("Por favor ingrese el numero de integrantes que podran participar en este reto");
+            return false;
+        } else if(spnPrivacidad.getSelectedItemPosition() == 0){
+            Toast.makeText(getActivity(), "Por favor seleccione la privacidad de su reto", Toast.LENGTH_LONG).show();
+            return false;
+        } else return true;
     }
 }

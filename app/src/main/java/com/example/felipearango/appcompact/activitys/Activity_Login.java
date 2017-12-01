@@ -31,7 +31,7 @@ public class Activity_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__login);
-        iniciar();
+        initComponents();
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +98,7 @@ public class Activity_Login extends AppCompatActivity {
         }
     }
 
-    public boolean validarCampos(){
+    private boolean validarCampos(){
         if(txtEmail.getText().toString().equals("")){
             txtEmail.setError("Por favor ingrese un correo");
             return false;
@@ -108,7 +108,7 @@ public class Activity_Login extends AppCompatActivity {
         } else return true;
     }
 
-    public void iniciar(){
+    private void initComponents(){
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
