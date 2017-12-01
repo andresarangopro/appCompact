@@ -59,7 +59,40 @@
 
     </Spinner>
 
-    <include layout="@layout/rv_addfecha"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="15">
+
+        <EditText
+            android:id="@+id/etDates"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:background="@drawable/edittext_style"
+            android:focusable="false"
+            android:hint="Fecha entrega"
+            android:paddingLeft="10dp" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="+" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spnTipoEntrega"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawableLeft="@mipmap/ic_chooser"
+        android:drawableStart="@mipmap/ic_chooser"></Spinner>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fechas"
@@ -80,18 +113,7 @@
         android:textColorHint="@color/colorAccent"
         android:id="@+id/txtIntegrante"/>
 
-    <Spinner
-        android:layout_margin="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittext_style"
-        android:drawableStart="@mipmap/ic_chooser"
-        android:drawableLeft="@mipmap/ic_chooser"
-        android:id="@+id/spnTipoEntrega">
 
-    </Spinner>
 
     <Spinner
         android:layout_margin="10dp"
