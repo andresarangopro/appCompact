@@ -10,23 +10,25 @@ public class Reto {
     String nombre;
     String descripcion;
     String tipoReto;
-    String fechaEntrega;
-    ArrayList<String> integrante;
+    ArrayList<String> fechasEntrega;
+    String numIntegrante;
     String tipoEntrega;
     String privacidad;
+    String individualOGrupo;
 
-    public Reto(){
+    public Reto() {
 
     }
 
-    public Reto(String nombre, String descripcion, String tipoReto, String fechaEntrega, ArrayList<String> integrante, String tipoEntrega, String privacidad) {
+    public Reto(String nombre, String descripcion, String tipoReto, ArrayList<String> fechasEntrega, String numIntegrante, String tipoEntrega, String privacidad, String individualOGrupo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoReto = tipoReto;
-        this.fechaEntrega = fechaEntrega;
-        this.integrante = integrante;
+        this.fechasEntrega = fechasEntrega;
+        this.numIntegrante = numIntegrante;
         this.tipoEntrega = tipoEntrega;
         this.privacidad = privacidad;
+        this.individualOGrupo = individualOGrupo;
     }
 
     public String getNombre() {
@@ -53,20 +55,20 @@ public class Reto {
         this.tipoReto = tipoReto;
     }
 
-    public String getFechaEntrega() {
-        return fechaEntrega;
+    public ArrayList<String> getFechasEntrega() {
+        return fechasEntrega;
     }
 
-    public void setFechaEntrega(String fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setFechasEntrega(ArrayList<String> fechasEntrega) {
+        this.fechasEntrega = fechasEntrega;
     }
 
-    public ArrayList<String> getIntegrante() {
-        return integrante;
+    public String getNumIntegrante() {
+        return numIntegrante;
     }
 
-    public void setIntegrante(ArrayList<String> integrante) {
-        this.integrante = integrante;
+    public void setNumIntegrante(String numIntegrante) {
+        this.numIntegrante = numIntegrante;
     }
 
     public String getTipoEntrega() {
@@ -75,5 +77,21 @@ public class Reto {
 
     public void setTipoEntrega(String tipoEntrega) {
         this.tipoEntrega = tipoEntrega;
+    }
+
+    public String getPrivacidad() {
+        return privacidad;
+    }
+
+    public void setPrivacidad(String privacidad) {
+        this.privacidad = privacidad;
+    }
+
+    public String getIndividualOGrupo() {
+        return individualOGrupo;
+    }
+
+    public void setIndividualOGrupo(String individualOGrupo) {
+        this.individualOGrupo = individualOGrupo;
     }
 }

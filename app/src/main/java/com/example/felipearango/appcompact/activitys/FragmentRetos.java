@@ -21,6 +21,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
 
@@ -86,13 +87,14 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     /////////////////////////////////////
     //Variables
     ////////////////////////////////////
-    EditText txtNombre, txtDescripcion, txtFecha, txtIntegrante;
-    Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega;
+    EditText txtNombre, txtDescripcion, txtFecha, txtNumIntegrante;
+    Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega, spnIndividualGrupo;
     Button btnPublicarReto, addDate;
     String [] tiposReto = {"Seleccione el tipo de reto", "Reto elite", "Reto aula", "Reto rally"};
     String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "Publico", "privado"};
     String [] tiposEntrega = {"Seleccione el formato de entrega", "Video", "Imagenes", "Documentos"};
-    String tReto, tPrivacidad, tEntrega;
+    String [] individualGrupo = {"Reto individual o en grupo?", "Individual", "Grupo"};
+    String tReto, tPrivacidad, tEntrega, individualOGrupo;
     ManejoUser mu = new ManejoUser();
     ArrayList<String> integrantes = new ArrayList<>();
     @Override
@@ -117,16 +119,14 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         txtFecha.setOnClickListener(this);
         addDate = view.findViewById(R.id.btnAdd);
         addDate.setOnClickListener(this);
-        txtIntegrante = (EditText) view.findViewById(R.id.txtIntegrante);
+        txtNumIntegrante = (EditText) view.findViewById(R.id.txtNumIntegrante);
         spnTipoReto =(Spinner) view.findViewById(R.id.spnTipoReto);
         spnTipoEntrega =(Spinner) view.findViewById(R.id.spnTipoEntrega);
         spnPrivacidad =(Spinner) view.findViewById(R.id.spnPrivacidad);
+        spnIndividualGrupo = (Spinner) view.findViewById(R.id.spnIndividualGrupo);
         btnPublicarReto = (Button) view.findViewById(R.id.btnPublicarReto);
         btnPublicarReto.setOnClickListener(this);
         initSpinners();
-        integrantes.add("yo");
-        integrantes.add("el");
-        integrantes.add("ella");
 
         //Recycler -----------------------------
 
@@ -226,6 +226,18 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
                         tReto = "rally";
                         break;
                 }
+            case R.id.spnIndividualGrupo:
+                switch (position){
+                    case 0:
+                        individualOGrupo = null;
+                        break;
+                    case 1:
+                        individualOGrupo = "individual";
+                        break;
+                    case 2:
+                        individualOGrupo = "grupo";
+                        break;
+                }
         }
     }
 
@@ -238,9 +250,10 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnPublicarReto:{
-                Toast.makeText(getContext(), "Funciona", Toast.LENGTH_LONG).show();
-                Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, txtFecha.getText().toString(),
-                        integrantes, tEntrega, tPrivacidad);
+                mData.add(0, txtFecha.getText().toString());
+                Toast.makeText(getContext(), mData.toString(), Toast.LENGTH_LONG).show();
+                Reto reto = new Reto(txtNombre.getText().toString(), txtDescripcion.getText().toString(), tReto, mData,
+                        txtNumIntegrante.getText().toString(), tEntrega, tPrivacidad, individualOGrupo);
                 String idJob = mu.databaseReference.push().getKey();
                 mu.insertar("Retos", idJob, reto);
                 break;
@@ -301,6 +314,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
         spnTipoReto.setOnItemSelectedListener(this);
         spnPrivacidad.setOnItemSelectedListener(this);
         spnTipoEntrega.setOnItemSelectedListener(this);
+        spnIndividualGrupo.setOnItemSelectedListener(this);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, tiposReto);
         spnTipoReto.setAdapter(adapter);
@@ -310,5 +324,8 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, tiposEntrega);
         spnTipoEntrega.setAdapter(adapter2);
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, individualGrupo);
+        spnIndividualGrupo.setAdapter(adapter3);
     }
 }
