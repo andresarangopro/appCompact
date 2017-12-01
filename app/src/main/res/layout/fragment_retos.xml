@@ -6,8 +6,6 @@
 
     tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
 
-
-
     <include layout="@layout/content_fragment_perfil" />
 
 </ScrollView>
