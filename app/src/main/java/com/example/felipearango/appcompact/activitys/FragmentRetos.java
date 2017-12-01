@@ -20,7 +20,9 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.felipearango.appcompact.Entregable;
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
 
@@ -44,7 +46,7 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
 
     private RecyclerView mRecyclerDates;
     private RecyclerAdapterDates mDates;
-    private ArrayList<String> mData = new ArrayList<>();
+    private ArrayList<Entregable> mData = new ArrayList<>();
     private LinearLayoutManager mLinearLayoutManager;
     private Calendar myCalendar = Calendar.getInstance();
 
@@ -246,15 +248,23 @@ public class FragmentRetos extends Fragment implements AdapterView.OnItemSelecte
                 break;
             }
             case R.id.btnAdd:{
-                int position = 0;
 
-                mData.add(position, txtFecha.getText().toString());
-                mDates.notifyItemInserted(position);
-                mDates.notifyDataSetChanged();
-                mRecyclerDates.scrollToPosition(position);
-                Toast.makeText(getContext(), "Agregada entrega", Toast.LENGTH_SHORT).show();
-                txtFecha.setText("");
-                break;
+                if(txtFecha.getText().toString().equals("")){
+                    txtFecha.setError("Ingrese fecha!");
+                }if( spnTipoEntrega.getSelectedItemPosition() == 0){
+                    txtFecha.setError("Seleccione tipo de entrega acá abajo");
+                }else{
+                    int position = 0;
+                    Entregable entregable = new Entregable(txtFecha.getText().toString(), spnTipoEntrega.getSelectedItem().toString());
+                    mData.add(position,entregable);
+                    mDates.notifyItemInserted(position);
+                    mDates.notifyDataSetChanged();
+                    mRecyclerDates.scrollToPosition(position);
+                    Toast.makeText(getContext(), "Agregada entrega", Toast.LENGTH_SHORT).show();
+                  //  txtFecha.setText("");
+                    break;
+                }
+
             }
             case R.id.etDates:{
 

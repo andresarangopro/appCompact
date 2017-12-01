@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.felipearango.appcompact.Entregable;
 import com.example.felipearango.appcompact.R;
 
 import java.util.ArrayList;
@@ -22,24 +24,28 @@ import java.util.List;
 
 public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDates.ViewHolder> {
 
-    private ArrayList<String> mDataSet;
+    private ArrayList<Entregable> mDataSet;
     private Context mContext;
 
-    public RecyclerAdapterDates(Context context, ArrayList<String> mDataSet){
+    public RecyclerAdapterDates(Context context, ArrayList<Entregable> mDataSet){
         this.mContext = context;
         this.mDataSet = mDataSet;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public EditText et;
-        public Button btnRemove;
+        private EditText et, etType;
+        private Button btnRemove;
+
 
         public ViewHolder(View v){
             super(v);
             et = v.findViewById(R.id.etDates);
+            etType = v.findViewById(R.id.etType);
             et.setEnabled(false);
+            etType.setEnabled(false);
             btnRemove = v.findViewById(R.id.btnAdd);
             btnRemove.setText("-");
+
         }
     }
 
@@ -51,7 +57,8 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.et.setText(mDataSet.get(position));
+        holder.et.setText(mDataSet.get(position).getFecha());
+        holder.etType.setText(mDataSet.get(position).getTipo());
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +68,13 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
                 notifyItemRangeChanged(position, mDataSet.size());
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
         return mDataSet.size();
     }
+
+
 }
