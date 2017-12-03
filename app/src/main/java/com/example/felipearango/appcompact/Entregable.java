@@ -25,6 +25,10 @@ public class Entregable {
         this.tipo = tipo;
     }
 
+    public String toString(){
+        return "fecha: " + getFecha() + "tipo entrga: " + getTipo();
+    }
+
 
     ////////////////////////////////
     ///////Getter and Setters

@@ -126,6 +126,19 @@
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:background="@drawable/edittext_style"
+        android:drawableStart="@mipmap/ic_chooser"
+        android:drawableLeft="@mipmap/ic_chooser"
+        android:id="@+id/spnIndividualGrupo">
+    </Spinner>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -134,11 +147,13 @@
         android:layout_weight="15"
         android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
+
         android:hint="integrante"
         android:textColor="@color/colorAccent"
         android:paddingLeft="15dp"
+
         android:textColorHint="@color/colorAccent"
-        android:id="@+id/txtIntegrante"/>
+        android:id="@+id/txtNumIntegrante"/>
 
 
     <Spinner
