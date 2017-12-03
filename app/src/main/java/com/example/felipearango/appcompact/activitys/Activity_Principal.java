@@ -13,11 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 import com.example.felipearango.appcompact.R;
 
 public class Activity_Principal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener,
+            FragmentVisualizarRetos.OnFragmentInteractionListener{
+
+    Button btnPublicarReto, btnVisualizarReto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class Activity_Principal extends AppCompatActivity
         setContentView(R.layout.activity__principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        initComponents();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,8 +41,8 @@ public class Activity_Principal extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         final FragmentRetos fragmentRetos = new FragmentRetos();
+        final FragmentVisualizarRetos fragmentVisualizarRetos = new FragmentVisualizarRetos();
 
-        Button btnPublicarReto = (Button) findViewById(R.id.btnFragReto);
         btnPublicarReto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +51,17 @@ public class Activity_Principal extends AppCompatActivity
                 transition.commit();
             }
         });
+
+        btnVisualizarReto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+                transition.replace(R.id.FrFragments, fragmentVisualizarRetos);
+                transition.commit();
+            }
+        });
+
+
     }
 
     @Override
@@ -111,5 +127,10 @@ public class Activity_Principal extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    private void initComponents(){
+        btnPublicarReto = (Button) findViewById(R.id.btnFragReto);
+        btnVisualizarReto = (Button) findViewById(R.id.btnVisualizarReto);
     }
 }
