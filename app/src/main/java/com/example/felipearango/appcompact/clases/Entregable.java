@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact;
+package com.example.felipearango.appcompact.clases;
 
 /**
  * Created by Sebastian Luna R on 11/30/2017.

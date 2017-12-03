@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.felipearango.appcompact.clases.Entregable;
@@ -14,24 +13,22 @@ import com.example.felipearango.appcompact.R;
 import java.util.ArrayList;
 
 /**
- * Created by Sebastian Luna R on 11/30/2017.
+ * Created by Sebastian Luna R on 12/2/2017.
  */
 
-public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDates.ViewHolder> {
+public class RecyclerAdapterVisulizeDates extends RecyclerView.Adapter<RecyclerAdapterVisulizeDates.ViewHolder> {
 
     private ArrayList<Entregable> mDataSet;
     private Context mContext;
 
 
-    public RecyclerAdapterDates(Context context, ArrayList<Entregable> mDataSet){
-        this.mContext = context;
-        this.mDataSet = mDataSet;
+    public RecyclerAdapterVisulizeDates(Context context, ArrayList<Entregable> mDataSet){
+            this.mContext = context;
+            this.mDataSet = mDataSet;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private EditText et, etType;
-        private Button btnRemove;
-
 
         public ViewHolder(View v){
             super(v);
@@ -39,31 +36,19 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
             etType = v.findViewById(R.id.etType);
             et.setFocusable(false);
             etType.setFocusable(false);
-            btnRemove = v.findViewById(R.id.btnAdd);
-            btnRemove.setText("-");
-
         }
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.rv_addfecha,parent,false);
-        return new ViewHolder(v);
+    public RecyclerAdapterVisulizeDates.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.rv_visulize_dates,parent,false);
+        return new RecyclerAdapterVisulizeDates.ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerAdapterVisulizeDates.ViewHolder holder, final int position) {
         holder.et.setText(mDataSet.get(position).getFecha());
         holder.etType.setText(mDataSet.get(position).getTipo());
-
-        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDataSet.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, mDataSet.size());
-            }
-        });
 
     }
 

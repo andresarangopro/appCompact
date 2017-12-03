@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/sl"
     android:background="@drawable/green_image"
     tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
 
-    <include layout="@layout/content_fragment_perfil" />
+    <include layout="@layout/content_retos" />
 
 </ScrollView>

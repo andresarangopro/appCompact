@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp"
+    android:layout_weight="150">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="25"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="¡Visualiza tú reto!"
+        android:textColor="@color/colorYellow"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvEmailEncargado"
+        android:textColorHint="@color/colorAccent"
+        android:hint="Encargado del reto:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvNombreReto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:hint="Nombre del reto:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvDescripcionReto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_vertical"
+        android:hint="Descripcion del reto:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvTipoReto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_vertical"
+        android:hint="Tipo de reto:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:id="@+id/rv_fechas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvIndividualGrupo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_vertical"
+        android:hint="Reto individual o en grupo:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvNumIntegrantes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_vertical"
+        android:hint="Numero de integrantes:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:focusable="false"
+        android:background="@drawable/edit_text_style_claro"
+        android:id="@+id/tvPrivacidad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="15"
+        android:gravity="center_vertical"
+        android:hint="Privacidad del reto:"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+</LinearLayout>

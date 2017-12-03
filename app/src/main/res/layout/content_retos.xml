@@ -100,8 +100,6 @@
                 android:id="@+id/spnTipoEntrega"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-
-
                 android:background="@drawable/edit_text_style_claro"
                 android:drawableLeft="@mipmap/ic_chooser"
                 android:drawableStart="@mipmap/ic_chooser"
@@ -133,7 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edit_text_style_claro"
         android:drawableStart="@mipmap/ic_chooser"
         android:drawableLeft="@mipmap/ic_chooser"
         android:id="@+id/spnIndividualGrupo">

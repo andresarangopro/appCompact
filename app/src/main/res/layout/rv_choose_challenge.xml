@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:background="@drawable/drawable_rv_choose_challenge"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_height="120dp">
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:weightSum="3"
+        android:layout_weight="8"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvNombreReto"
+            android:textSize="20sp"
+            android:text="Este ese el nombre del reto"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:hint="Este ese el nombre del reto"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvPrivacidad"
+            android:textColor="@color/colorAccentDark"
+            android:text="Privado o público"
+            android:hint="Privado o público"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tvIndividualGrupo"
+            android:textColor="@color/colorAccentDark"
+            android:text="Individual/grupo"
+            android:layout_weight="1"
+            android:hint="Individual/grupo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+    </LinearLayout>
+    <ImageView
+        android:src="@mipmap/ic_arrow"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+</LinearLayout>
