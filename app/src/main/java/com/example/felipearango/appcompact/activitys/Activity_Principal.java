@@ -87,7 +87,10 @@ public class Activity_Principal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            final FragmentRetos fragmentRetos = new FragmentRetos();
+            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+            transition.replace(R.id.FrFragments, fragmentRetos);
+            transition.commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

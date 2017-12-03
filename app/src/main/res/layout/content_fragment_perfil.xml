@@ -16,20 +16,22 @@
         android:layout_weight="15"
         android:gravity="center_horizontal|center_vertical"
         android:text="Regístrata tu reto!"
-        android:textColor="@color/colorGreenBackground"
+        android:textColor="@color/colorYellow"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <!-- android:drawableStart="@mipmap/ic_user"-->
     <EditText
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
         android:hint="Nombre reto"
         android:paddingLeft="5dp"
+        android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
         android:id="@+id/txtNombreReto"/>
 
@@ -39,10 +41,11 @@
         android:layout_margin="10dp"
         android:layout_marginTop="25dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
         android:hint="descripcion reto"
         android:paddingLeft="5dp"
+        android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
         android:id="@+id/txtDescripcionReto"/>
 
@@ -53,46 +56,69 @@
         android:layout_margin="10dp"
         android:layout_marginTop="25dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edit_text_style_claro"
         android:drawableLeft="@mipmap/ic_chooser"
-        android:drawableStart="@mipmap/ic_chooser">
+        android:drawableStart="@mipmap/ic_chooser"
+        android:textColor="@color/colorAccent">
 
     </Spinner>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="15">
+        android:background="@drawable/panel_with_border"
 
-        <EditText
-            android:id="@+id/etDates"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:weightSum="2"
+            android:layout_weight="7"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9"
-            android:background="@drawable/edittext_style"
-            android:focusable="false"
-            android:hint="Fecha entrega"
-            android:paddingLeft="10dp" />
+            android:layout_height="match_parent">
+
+            <EditText
+
+                android:layout_margin="10dp"
+                android:id="@+id/etDates"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_text_style_claro"
+                android:hint="Nombre reto"
+                android:paddingLeft="15dp"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+
+            <Spinner
+                android:layout_margin="10dp"
+                android:paddingLeft="15dp"
+                android:layout_weight="1"
+                android:id="@+id/spnTipoEntrega"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+
+                android:background="@drawable/edit_text_style_claro"
+                android:drawableLeft="@mipmap/ic_chooser"
+                android:drawableStart="@mipmap/ic_chooser"
+                android:textColor="@color/colorAccent">
+            </Spinner>
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnAdd"
+            android:background="@drawable/circular_button"
+            android:layout_margin="10dp"
+            android:textSize="30sp"
+            android:text="+"
+            android:layout_weight="3"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="+" />
+            android:layout_height="match_parent" />
     </LinearLayout>
-
-    <Spinner
-        android:id="@+id/spnTipoEntrega"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittext_style"
-        android:drawableLeft="@mipmap/ic_chooser"
-        android:drawableStart="@mipmap/ic_chooser"></Spinner>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fechas"
@@ -100,44 +126,32 @@
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
-
-    <Spinner
-        android:layout_margin="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittext_style"
-        android:drawableStart="@mipmap/ic_chooser"
-        android:drawableLeft="@mipmap/ic_chooser"
-        android:id="@+id/spnIndividualGrupo">
-    </Spinner>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_marginTop="25dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
+        android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
-        android:hint="numero de integrantes"
-        android:paddingLeft="5dp"
+        android:hint="integrante"
+        android:textColor="@color/colorAccent"
+        android:paddingLeft="15dp"
         android:textColorHint="@color/colorAccent"
-        android:id="@+id/txtNumIntegrante"/>
-
+        android:id="@+id/txtIntegrante"/>
 
 
     <Spinner
-        android:layout_margin="10dp"
-        android:layout_marginTop="25dp"
+        android:id="@+id/spnPrivacidad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="25dp"
         android:layout_weight="15"
-        android:background="@drawable/edittext_style"
-        android:drawableStart="@mipmap/ic_chooser"
+        android:background="@drawable/edit_text_style_claro"
         android:drawableLeft="@mipmap/ic_chooser"
-        android:id="@+id/spnPrivacidad">
+        android:drawableStart="@mipmap/ic_chooser"
+        android:textColor="@color/colorAccent">
 
     </Spinner>
 
