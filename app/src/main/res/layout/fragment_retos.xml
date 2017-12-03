@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="@drawable/green_image"
     tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
 
     <include layout="@layout/content_fragment_perfil" />

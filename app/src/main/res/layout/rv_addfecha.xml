@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:layout_margin="10dp"
+    android:background="@drawable/panel_with_border"
+
     android:layout_marginTop="25dp"
-    android:orientation="vertical"
-    android:weightSum="4"
+    android:orientation="horizontal"
+    android:weightSum="10"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
     <LinearLayout
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:weightSum="2"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
         <EditText
-            android:focusable="false"
+
+            android:layout_margin="10dp"
             android:id="@+id/etDates"
-            android:paddingLeft="10dp"
-            android:hint="Fecha entrega"
-            android:background="@drawable/edittext_style"
-            android:layout_weight="9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
-        <Button
-            android:id="@+id/btnAdd"
-            android:text="+"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:background="@drawable/edit_text_style_claro"
+            android:hint="Nombre reto"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
+
+        <EditText
+            android:layout_margin="10dp"
+            android:id="@+id/etType"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_style_claro"
+            android:hint="Tipo de reto"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etType"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/edittext_style"
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+    <Button
+        android:id="@+id/btnAdd"
+        android:background="@drawable/circular_button"
+        android:layout_margin="10dp"
+        android:textSize="30sp"
+        android:text="+"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
 </LinearLayout>

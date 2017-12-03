@@ -10,5 +10,6 @@
     <color name="colorSubText">#ABAAAA</color>
     <color name="colorYellow">#FFBF00</color>
     <color name="colorYellowIcons">#FF7600</color>
-
+    <color name="organeFaded">#80FF7600</color>
+    <color name="greenFaded">#4051C200</color>
 </resources>
