@@ -19,7 +19,7 @@ import com.example.felipearango.appcompact.R;
 
 public class Activity_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener,
-            FragmentVisualizarRetos.OnFragmentInteractionListener{
+            FragmentVisualizarRetos.OnFragmentInteractionListener, FragmentChooseChallenge.OnFragmentInteractionListener{
 
     Button btnPublicarReto, btnVisualizarReto;
 
@@ -108,7 +108,10 @@ public class Activity_Principal extends AppCompatActivity
             transition.replace(R.id.FrFragments, fragmentRetos);
             transition.commit();
         } else if (id == R.id.nav_gallery) {
-
+            final FragmentChooseChallenge fragmentChooseChallenge = new FragmentChooseChallenge();
+            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+            transition.replace(R.id.FrFragments, fragmentChooseChallenge);
+            transition.commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.felipearango.appcompact.activitys.FragmentChooseChallenge">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
+        android:id="@+id/rv_challenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+</FrameLayout>
