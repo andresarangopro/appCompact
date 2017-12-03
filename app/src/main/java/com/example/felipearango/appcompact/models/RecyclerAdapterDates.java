@@ -41,8 +41,8 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
             super(v);
             et = v.findViewById(R.id.etDates);
             etType = v.findViewById(R.id.etType);
-            et.setEnabled(false);
-            etType.setEnabled(false);
+            et.setFocusable(false);
+            etType.setFocusable(false);
             btnRemove = v.findViewById(R.id.btnAdd);
             btnRemove.setText("-");
 
