@@ -1,15 +1,34 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context="com.example.felipearango.appcompact.activitys.FragmentChooseChallenge">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_margin="5dp"
-        android:paddingLeft="15dp"
-        android:paddingStart="15dp"
-        android:id="@+id/rv_challenge"
+    <TextView
+        android:id="@+id/tvRegitro"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
-</FrameLayout>
+        android:layout_height="0dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorYellow"
+        android:textSize="25sp"
+        android:text="Desafíos!"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorAccent"
+            android:id="@+id/rv_desafíos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>

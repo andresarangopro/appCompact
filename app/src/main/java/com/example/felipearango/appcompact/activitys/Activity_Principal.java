@@ -19,7 +19,8 @@ import com.example.felipearango.appcompact.R;
 
 public class Activity_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener,
-            FragmentVisualizarRetos.OnFragmentInteractionListener, FragmentChooseChallenge.OnFragmentInteractionListener{
+            FragmentVisualizarRetos.OnFragmentInteractionListener, FragmentChooseChallenge.OnFragmentInteractionListener,
+            FragmentPerfil.OnFragmentInteractionListener{
 
     Button btnPublicarReto, btnVisualizarReto;
 
@@ -39,28 +40,6 @@ public class Activity_Principal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        final FragmentRetos fragmentRetos = new FragmentRetos();
-        final FragmentVisualizarRetos fragmentVisualizarRetos = new FragmentVisualizarRetos();
-
-        btnPublicarReto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-                transition.replace(R.id.FrFragments, fragmentRetos);
-                transition.commit();
-            }
-        });
-
-        btnVisualizarReto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-                transition.replace(R.id.FrFragments, fragmentVisualizarRetos);
-                transition.commit();
-            }
-        });
-
 
     }
 
@@ -103,17 +82,22 @@ public class Activity_Principal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
+            final FragmentPerfil fragmentPerfil = new FragmentPerfil();
+            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+            transition.replace(R.id.FrFragments, fragmentPerfil);
+            transition.commit();
+
+        } else if (id == R.id.nav_gallery) {
             final FragmentRetos fragmentRetos = new FragmentRetos();
             FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
             transition.replace(R.id.FrFragments, fragmentRetos);
             transition.commit();
-        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
             final FragmentChooseChallenge fragmentChooseChallenge = new FragmentChooseChallenge();
             FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
             transition.replace(R.id.FrFragments, fragmentChooseChallenge);
             transition.commit();
-        } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -133,7 +117,6 @@ public class Activity_Principal extends AppCompatActivity
     }
 
     private void initComponents(){
-        btnPublicarReto = (Button) findViewById(R.id.btnFragReto);
-        btnVisualizarReto = (Button) findViewById(R.id.btnVisualizarReto);
+
     }
 }

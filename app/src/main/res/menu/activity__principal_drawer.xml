@@ -6,16 +6,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:icon="@mipmap/ic_user_menu"
+            android:title="Perfil" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:icon="@mipmap/ic_challenges"
+            android:title="Publicar retos" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:icon="@mipmap/ic_hour_glass"
+            android:title="Mis retos" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

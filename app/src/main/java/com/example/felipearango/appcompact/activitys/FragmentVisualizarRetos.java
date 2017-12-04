@@ -120,8 +120,6 @@ public class FragmentVisualizarRetos extends Fragment {
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
         mDates = new RecyclerAdapterVisulizeDates(getContext(), mData);
 
-
-
         RetosRef.orderByChild("nombre").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
