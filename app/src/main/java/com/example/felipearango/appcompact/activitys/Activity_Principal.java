@@ -1,9 +1,10 @@
 package com.example.felipearango.appcompact.activitys;
 
-import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,19 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
+import android.widget.FrameLayout;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.models.ManejoUser;
 
-public class Activity_Principal extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener,
-            FragmentVisualizarRetos.OnFragmentInteractionListener, FragmentChooseChallenge.OnFragmentInteractionListener,
-            FragmentPerfil.OnFragmentInteractionListener{
+public class Activity_Principal extends AppCompatActivity    implements  NavigationView.OnNavigationItemSelectedListener{
 
     Button btnPublicarReto, btnVisualizarReto;
-
+    ManejoUser mn = new ManejoUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +38,8 @@ public class Activity_Principal extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mn.inicializatedFireBase();
 
     }
 
@@ -79,42 +79,59 @@ public class Activity_Principal extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            final FragmentPerfil fragmentPerfil = new FragmentPerfil();
-            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-            transition.replace(R.id.FrFragments, fragmentPerfil);
-            transition.commit();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
 
-        } else if (id == R.id.nav_gallery) {
-            final FragmentRetos fragmentRetos = new FragmentRetos();
-            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-            transition.replace(R.id.FrFragments, fragmentRetos);
-            transition.commit();
+        FrameLayout fl = (FrameLayout) findViewById(R.id.FrFragments);
+        fl.removeAllViews();
+        manager.popBackStack();
+        getFragmentManager().popBackStack();
+        Fragment fragment = null;
 
-        } else if (id == R.id.nav_slideshow) {
-            final FragmentChooseChallenge fragmentChooseChallenge = new FragmentChooseChallenge();
-            FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
-            transition.replace(R.id.FrFragments, fragmentChooseChallenge);
-            transition.commit();
-        } else if (id == R.id.nav_manage) {
+        switch (item.getItemId()){
+            case R.id.nav_camera:{
+                fragment = new FragmentPerfil();
+                break;
+            }
+            case R.id.nav_gallery:{
+                fragment = new FragmentRetos();
+                break;
+            }
+            case R.id.nav_slideshow:{
+                fragment = new  FragmentChooseChallenge();;
+                break;
+            }
+            case R.id.nav_manage:{
+                fragment = new FragmentRetos();
+                break;
+            }
+            case  R.id.nav_share:{
+                break;
+            }
+            case R.id.nav_send:{
+                cerrarSesion();
+                break;
+            }
+        }
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (fragment != null) {
+            transaction.replace(R.id.FrFragments, fragment);
+            transaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+    public void cerrarSesion(){
+       mn.firebaseAuth.signOut();
+        finish();
+    }
+
 
     private void initComponents(){
 

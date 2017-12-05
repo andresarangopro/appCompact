@@ -8,6 +8,10 @@ import android.widget.EditText;
 
 public class Util {
 
+    public static int usuario_estudiante =1;
+    public static int usuario_profesor =2;
+    public static int usuario_empresa =3;
+
     public static boolean emptyCampMSG(EditText txt, String msg){
         if(emptyWT(txt))txt.setError(msg);
         return emptyWT(txt);

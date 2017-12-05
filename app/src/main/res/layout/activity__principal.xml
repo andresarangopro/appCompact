@@ -17,7 +17,7 @@
         app:itemIconTint="@color/colorSubText"
         android:id="@+id/nav_view"
         app:itemTextColor="@drawable/navigation_text_color"
-        android:background="@drawable/black_green"
+
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -25,5 +25,6 @@
 
         app:headerLayout="@layout/nav_header_activity__principal"
         app:menu="@menu/activity__principal_drawer" />
+    <!--   android:background="@drawable/black_green"-->
 
 </android.support.v4.widget.DrawerLayout>

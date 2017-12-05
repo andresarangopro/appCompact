@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@drawable/black_background"
+
     tools:context="com.example.felipearango.appcompact.activitys.Activity_Login">
+        <!--  android:background="@drawable/black_background"-->
 
 
 

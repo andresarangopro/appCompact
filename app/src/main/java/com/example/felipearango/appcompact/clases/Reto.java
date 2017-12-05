@@ -67,7 +67,10 @@ public class Reto {
     ///////////////////////////////////////////////
     //Constructor con parametros
     ///////////////////////////////////////////////
-    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto, ArrayList<String> fechasEntrega, String numIntegrante, ArrayList<String> tipoEntrega, String privacidad, String individualOGrupo) {
+    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto,
+                ArrayList<String> fechasEntrega, String numIntegrante, ArrayList<String> tipoEntrega,
+                String privacidad, String individualOGrupo) {
+
         this.emailResponsable = emailResponsable;
         this.nombre = nombre;
         this.descripcion = descripcion;

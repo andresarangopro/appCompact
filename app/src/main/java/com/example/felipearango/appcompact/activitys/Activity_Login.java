@@ -11,107 +11,80 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.models.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 
-public class Activity_Login extends AppCompatActivity {
+public class Activity_Login extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnIngresar;
-    EditText txtEmail;
-    EditText txtPassword;
-    TextView tvRegistrarse;
-    FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener listener;
+    private Button btnIngresar;
+    private EditText txtEmail;
+    private EditText txtPassword;
+    private TextView tvRegistrarse;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener listener;
+    private ManejoUser mn = new ManejoUser();
+    public static boolean calledAlready = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__login);
         initComponents();
-
-        btnIngresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(validarCampos()) {
-                    ingresar(txtEmail.getText().toString(), txtPassword.getText().toString());
-                }
-            }
-        });
-
-        tvRegistrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Activity_Register.class);
-                startActivity(intent);
-            }
-        });
-
-        mAuth = FirebaseAuth.getInstance();
-        listener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if(user == null){
-                    //No esta logeado
-                }else{
-                    //esta logeado
-                    Intent intent = new Intent(getApplicationContext(), Activity_Principal.class);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "Sesion iniciada con email: " + user.getEmail(), Toast.LENGTH_LONG).show();
-                }
-            }
-        };
+        mn.inicializatedFireBase();
+        verificaSignIn();
     }
 
-    public void cerrarSesion(){
-        mAuth.signOut();
+    private void verificaSignIn(){
+        if(mn.firebaseAuth.getCurrentUser() != null){
+            mn.account(Activity_Login.this);
+            finish();
+        }
     }
-
     private void ingresar(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mn.firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    mn.account(Activity_Login.this);
                     Toast.makeText(getApplicationContext(), "Correcto", Toast.LENGTH_LONG).show();
+                    finish();
                 }else{
                     Toast.makeText(getApplicationContext(), "Por favor verifique su usuario y contraseña", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(listener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(listener != null){
-            mAuth.removeAuthStateListener(listener);
-        }
-    }
-
-    private boolean validarCampos(){
-        if(txtEmail.getText().toString().equals("")){
-            txtEmail.setError("Por favor ingrese un correo");
-            return false;
-        }else if(txtPassword.getText().toString().equals("")){
-            txtPassword.setError("Por favor ingrese una contraseña");
-            return false;
-        } else return true;
-    }
-
     private void initComponents(){
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         tvRegistrarse = (TextView) findViewById(R.id.tvRegistrate);
+        btnIngresar.setOnClickListener(this);
+        tvRegistrarse.setOnClickListener(this);
     }
+    @Override
+    public void onClick(View v) {
+        int vista = v.getId();
+        switch (vista){
+            case R.id.btnIngresar:{
+                if(!Util.emptyCampMSG(txtEmail, "Por favor ingrese un correo") &&
+                        !Util.emptyCampMSG(txtEmail, "Por favor ingrese una contraseña")) {
+
+                    ingresar(txtEmail.getText().toString(), txtPassword.getText().toString());
+                }
+                break;
+            }
+            case R.id.tvRegistrate:{
+                startActivity(new Intent(getApplicationContext(), Activity_Register.class));
+                break;
+            }
+        }
+    }
+
+
 }
