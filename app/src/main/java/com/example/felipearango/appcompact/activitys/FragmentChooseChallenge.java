@@ -4,15 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.models.RecyclerAdapterChallenges;
+import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
 
 import java.util.ArrayList;
 
@@ -31,8 +36,13 @@ public class FragmentChooseChallenge extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private RecyclerView mRecyclerChallenges;
-    private RecyclerAdapterChallenges mDates;
+    private RecyclerAdapterChallenges adapterChallenges;
+
+    private RecyclerAdapterDates mDates;
+
     private ArrayList<Reto> mData = new ArrayList<>();
+
+    private ArrayList<Entregable> mDataTest = new ArrayList<>();
     private LinearLayoutManager mLinearLayoutManager;
 
     // TODO: Rename and change types of parameters
@@ -77,15 +87,17 @@ public class FragmentChooseChallenge extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_choose_challenge, container, false);
 
-        //Recycler -----------------------------
+        Entregable entregable = new Entregable("Hoa", "Hoax2");
+      //  mDataTest.add(entregable);
 
-
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerChallenges = view.findViewById(R.id.rv_challenge);
+        mLinearLayoutManager = new GridLayoutManager(getContext(),1);
+        mRecyclerChallenges = view.findViewById(R.id.rv_desafíos);
         mRecyclerChallenges.setLayoutManager(mLinearLayoutManager);
-        mDates = new RecyclerAdapterChallenges(getContext(), mData);
+        inicializeArray();
+        mDates = new RecyclerAdapterDates(getContext(), mDataTest);
         mRecyclerChallenges.setAdapter(mDates);
 
+        Toast.makeText(getContext(), mRecyclerChallenges.getAdapter().toString(), Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_choose_challenge, container, false);
     }
@@ -95,6 +107,26 @@ public class FragmentChooseChallenge extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void inicializeArray(){
+        ArrayList<String> asd = new ArrayList<>();
+        asd.add("Hola");
+        //Recycler -----------------------------
+        Reto reto = new Reto("Hola", "dos", "tres", "Cuatro", asd, "Seis", asd, "Ocho", "Nueve");
+        mData.add(reto);
+
+    }
+
+    private void inicializeRecycler(){
+
+
+
+        inicializeArray();
+
+        adapterChallenges.notifyItemInserted(0);
+        adapterChallenges.notifyDataSetChanged();
+        mRecyclerChallenges.scrollToPosition(0);
     }
 
     @Override

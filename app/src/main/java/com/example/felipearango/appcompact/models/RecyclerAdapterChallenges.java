@@ -1,6 +1,10 @@
 package com.example.felipearango.appcompact.models;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
+import com.example.felipearango.appcompact.activitys.FragmentChooseChallenge;
+import com.example.felipearango.appcompact.activitys.FragmentVisualizarRetos;
 import com.example.felipearango.appcompact.clases.Reto;
 
 import java.util.ArrayList;
@@ -29,12 +36,14 @@ public class RecyclerAdapterChallenges extends RecyclerView.Adapter<RecyclerAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvNombre, tvType, tvGroup;
+        private View view;
 
         public ViewHolder(View v){
             super(v);
             tvNombre = v.findViewById(R.id.tvNombreReto);
             tvType = v.findViewById(R.id.tvPrivacidad);
             tvGroup = v.findViewById(R.id.tvIndividualGrupo);
+            this.view = v;
         }
     }
 
@@ -48,7 +57,15 @@ public class RecyclerAdapterChallenges extends RecyclerView.Adapter<RecyclerAdap
     public void onBindViewHolder(RecyclerAdapterChallenges.ViewHolder holder, final int position) {
         holder.tvNombre.setText(mDataSet.get(position).getNombre());
         holder.tvType.setText(mDataSet.get(position).getPrivacidad());
-        holder.tvGroup.setText(mDataSet.get(position).getIndividualOGrupo());
+        holder.tvGroup.setText(mDataSet.get(position).getIndividualOGrupo());/*
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Activity_Principal activity = (Activity_Principal)view.getContext();
+                FragmentVisualizarRetos fragmentVisualizarRetos = new FragmentVisualizarRetos();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.FrFragments, fragmentVisualizarRetos).addToBackStack(null).commit();
+            }
+        });*/
     }
 
     @Override
