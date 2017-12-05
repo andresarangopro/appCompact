@@ -1,5 +1,6 @@
 package com.example.felipearango.appcompact.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
@@ -129,6 +130,7 @@ public class Activity_Principal extends AppCompatActivity    implements  Navigat
 
     public void cerrarSesion(){
        mn.firebaseAuth.signOut();
+       startActivity(new Intent(this, Activity_Login.class));
         finish();
     }
 

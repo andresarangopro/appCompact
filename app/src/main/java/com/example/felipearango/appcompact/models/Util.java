@@ -21,5 +21,8 @@ public class Util {
         return txt.getText().toString().equals("");
     }
 
+    public static String geteTxt(EditText etText){
+        return !etText.getText().toString().equals("")? etText.getText().toString(): "";
+    }
 
 }

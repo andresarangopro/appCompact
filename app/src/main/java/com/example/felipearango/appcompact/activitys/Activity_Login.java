@@ -2,20 +2,15 @@ package com.example.felipearango.appcompact.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.Util;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -29,6 +24,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener listener;
     private ManejoUser mn = new ManejoUser();
     public static boolean calledAlready = false;
+    public static int TIPO_USUARIO = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +41,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
             finish();
         }
     }
-    private void ingresar(String email, String password) {
-        mn.firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    mn.account(Activity_Login.this);
-                    Toast.makeText(getApplicationContext(), "Correcto", Toast.LENGTH_LONG).show();
-                    finish();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Por favor verifique su usuario y contraseña", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
+
     private void initComponents(){
         btnIngresar = (Button) findViewById(R.id.btnIngresar);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
@@ -75,7 +58,8 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
                 if(!Util.emptyCampMSG(txtEmail, "Por favor ingrese un correo") &&
                         !Util.emptyCampMSG(txtEmail, "Por favor ingrese una contraseña")) {
 
-                    ingresar(txtEmail.getText().toString(), txtPassword.getText().toString());
+                    mn.ingresar(txtEmail.getText().toString(), txtPassword.getText().toString(), Activity_Login.this);
+
                 }
                 break;
             }

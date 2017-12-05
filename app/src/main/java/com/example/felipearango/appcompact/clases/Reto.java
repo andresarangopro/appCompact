@@ -3,7 +3,7 @@ package com.example.felipearango.appcompact.clases;
 import java.util.ArrayList;
 
 /**
- * Created by Usuario on 29/11/2017.
+ * Created by Usuario_estudiante on 29/11/2017.
  */
 
 public class Reto {

@@ -37,32 +37,34 @@
             android:id="@+id/txtRegistroEmail"/>
         <!-- android:drawableStart="@mipmap/ic_user"-->
         <EditText
+            android:id="@+id/txtRegistroPass"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="15"
             android:background="@drawable/edittext_style"
+            android:drawableLeft="@mipmap/ic_padlock"
             android:drawablePadding="10dp"
             android:drawableStart="@mipmap/ic_padlock"
-            android:drawableLeft="@mipmap/ic_padlock"
             android:hint="Contraseña"
+            android:inputType="textPassword"
             android:paddingLeft="5dp"
-            android:textColorHint="@color/colorAccent"
-            android:id="@+id/txtRegistroPass"/>
+            android:textColorHint="@color/colorAccent" />
 
         <EditText
+            android:id="@+id/txtRegistroConfirPass"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="15"
             android:background="@drawable/edittext_style"
+            android:drawableLeft="@mipmap/ic_padlock"
             android:drawablePadding="10dp"
             android:drawableStart="@mipmap/ic_padlock"
             android:hint="Confirmar contraseña"
+            android:inputType="textPassword"
             android:paddingLeft="5dp"
-            android:textColorHint="@color/colorAccent"
-            android:drawableLeft="@mipmap/ic_padlock"
-            android:id="@+id/txtRegistroConfirPass"/>
+            android:textColorHint="@color/colorAccent" />
 
         <Spinner
             android:layout_margin="10dp"
