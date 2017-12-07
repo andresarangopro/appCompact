@@ -11,5 +11,12 @@
     tools:context="com.example.android.blocks.Activities.activitys.Activity_Principal"
     tools:showIn="@layout/app_bar_activity__principal">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chat"
+        android:id="@+id/btnChat"
+        android:layout_marginLeft="250dp"/>
+
 
 </FrameLayout>
