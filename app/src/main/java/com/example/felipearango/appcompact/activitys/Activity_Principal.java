@@ -1,9 +1,9 @@
 package com.example.felipearango.appcompact.activitys;
 
 import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,16 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 
 import com.example.felipearango.appcompact.R;
 
 public class Activity_Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentRetos.OnFragmentInteractionListener,
             FragmentVisualizarRetos.OnFragmentInteractionListener, FragmentChooseChallenge.OnFragmentInteractionListener,
-            FragmentPerfil.OnFragmentInteractionListener{
+            FragmentPerfil.OnFragmentInteractionListener, FragmentChat.OnFragmentInteractionListener{
 
-    Button btnPublicarReto, btnVisualizarReto;
+    Button btnChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,17 @@ public class Activity_Principal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final FragmentChat fragmentChat = new FragmentChat();
+                FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+                transition.replace(R.id.FrFragments, fragmentChat);
+                transition.commit();
+                /*Intent intent = new Intent(getApplicationContext(), Activity_chat.class);
+                startActivity(intent);*/
+            }
+        });
     }
 
     @Override
@@ -117,6 +127,6 @@ public class Activity_Principal extends AppCompatActivity
     }
 
     private void initComponents(){
-
+        btnChat = (Button) findViewById(R.id.btnChat);
     }
 }
