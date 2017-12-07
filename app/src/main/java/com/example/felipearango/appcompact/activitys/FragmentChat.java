@@ -66,7 +66,6 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragment_chat, container, false);
 
-
         initComponents(view);
         adapter = new AdapterMensajes(view.getContext(), listMn);
         LinearLayoutManager l = new LinearLayoutManager(view.getContext());
@@ -84,13 +83,7 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
         mn.databaseReference.child("salaChat").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                    @Override
-                    public void onItemRangeInserted(int positionStart, int itemCount) {
-                        super.onItemRangeInserted(positionStart, itemCount);
-                        setScrollBar();
-                    }
-                });
+
                 listMn.clear();
                 for (DataSnapshot chats: dataSnapshot.getChildren() ) {
                     MensajeRecibir m = chats.getValue(MensajeRecibir.class);
@@ -101,6 +94,13 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
                 adapter = new AdapterMensajes(view.getContext(),listMn);
                 rvMensajes.setAdapter(adapter);
 
+                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                    @Override
+                    public void onItemRangeInserted(int positionStart, int itemCount) {
+                        super.onItemRangeInserted(positionStart, itemCount);
+                        setScrollBar();
+                    }
+                });
             }
 
             @Override
