@@ -24,10 +24,10 @@ import com.example.felipearango.appcompact.models.ManejoUser;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -79,28 +79,35 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private void listener(){
-        mn.databaseReference.child("salaChat").addValueEventListener(new ValueEventListener() {
+    private void listener() {
+        mn.databaseReference.child("salaChat").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                listMn.clear();
-                for (DataSnapshot chats: dataSnapshot.getChildren() ) {
-                    MensajeRecibir m = chats.getValue(MensajeRecibir.class);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    MensajeRecibir m = dataSnapshot.getValue(MensajeRecibir.class);
                     Log.e("ERR", m.getMensaje()+"1");
-                    //adapter.addMensaje(m);
-                    listMn.add(m);
-                }
-                adapter = new AdapterMensajes(view.getContext(),listMn);
-                rvMensajes.setAdapter(adapter);
-
-                adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                    adapter.addMensaje(m);
+                    adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
                     @Override
                     public void onItemRangeInserted(int positionStart, int itemCount) {
                         super.onItemRangeInserted(positionStart, itemCount);
                         setScrollBar();
                     }
                 });
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
