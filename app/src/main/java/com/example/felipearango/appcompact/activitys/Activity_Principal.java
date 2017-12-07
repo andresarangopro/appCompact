@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.models.ManejoUser;
 
-public class Activity_Principal extends AppCompatActivity    implements  NavigationView.OnNavigationItemSelectedListener{
+public class Activity_Principal extends AppCompatActivity   implements  NavigationView.OnNavigationItemSelectedListener{
 
     Button btnPublicarReto, btnVisualizarReto;
     ManejoUser mn = new ManejoUser();
