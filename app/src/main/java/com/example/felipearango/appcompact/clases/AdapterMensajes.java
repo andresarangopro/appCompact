@@ -22,8 +22,9 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
     private ArrayList<MensajeRecibir> lstMensaje = new ArrayList<>();
     private Context c;
 
-    public AdapterMensajes(Context c) {
+    public AdapterMensajes(Context c, ArrayList mensajes) {
         this.c = c;
+        this.lstMensaje = mensajes;
     }
 
     public void addMensaje(MensajeRecibir m){

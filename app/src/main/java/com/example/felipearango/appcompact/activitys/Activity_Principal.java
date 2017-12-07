@@ -1,10 +1,11 @@
 package com.example.felipearango.appcompact.activitys;
 
-import android.net.Uri;
-import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,16 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
+import android.widget.FrameLayout;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.models.ManejoUser;
 
 public class Activity_Principal extends AppCompatActivity   implements  NavigationView.OnNavigationItemSelectedListener{
 
-    Button btnPublicarReto, btnVisualizarReto;
+    Button btnPublicarReto, btnVisualizarReto, btnChat;
     ManejoUser mn = new ManejoUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
         setContentView(R.layout.activity__principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        initComponents();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -109,6 +109,7 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
                 break;
             }
             case  R.id.nav_share:{
+                fragment = new FragmentChat();
                 break;
             }
             case R.id.nav_send:{
@@ -135,8 +136,4 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
         finish();
     }
 
-
-    private void initComponents(){
-
-    }
 }
