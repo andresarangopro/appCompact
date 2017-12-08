@@ -6,33 +6,41 @@ package com.example.felipearango.appcompact.clases;
 
 public class Entregable {
 
-    /**
-     * Fecha máxima del entregable
-     */
+    /////////////////////////
+    //Variables
+    ///////////////////////
+
+    private String id;
     private String fecha;
+    private String tipoEntrega;
+    private int numeroEntrega;
 
-    /**
-     * Tipo de entregable
-     */
-    private String tipo;
 
-    ////////////////////////////////////////
-    /////Constructor
-    ////////////////////////////////////////
+    /////////////////////////
+    //Constructor
+    ///////////////////////
 
-    public Entregable(String fecha, String tipo) {
+    public Entregable(String id, String fecha, String tipoEntrega, int numeroEntrega) {
+        this.id = id;
         this.fecha = fecha;
-        this.tipo = tipo;
+        this.tipoEntrega = tipoEntrega;
+        this.numeroEntrega = numeroEntrega;
     }
 
-    public String toString(){
-        return "fecha: " + getFecha() + "tipo entrga: " + getTipo();
+    public Entregable(){}
+
+    /////////////////////////
+    //Getters and Setters
+    ///////////////////////
+
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    ////////////////////////////////
-    ///////Getter and Setters
-    /////////////////////////////////
     public String getFecha() {
         return fecha;
     }
@@ -41,11 +49,19 @@ public class Entregable {
         this.fecha = fecha;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoEntrega() {
+        return tipoEntrega;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoEntrega(String tipoEntrega) {
+        this.tipoEntrega = tipoEntrega;
+    }
+
+    public int getNumeroEntrega() {
+        return numeroEntrega;
+    }
+
+    public void setNumeroEntrega(int numeroEntrega) {
+        this.numeroEntrega = numeroEntrega;
     }
 }

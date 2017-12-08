@@ -5,21 +5,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_perfil"
             android:icon="@mipmap/ic_user_menu"
             android:title="Perfil" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_publicar_retos"
             android:icon="@mipmap/ic_challenges"
             android:title="Publicar retos" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_mis_retos"
             android:icon="@mipmap/ic_hour_glass"
             android:title="Mis retos" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_chat"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Chat" />
     </group>
 
     <item android:title="Communicate">

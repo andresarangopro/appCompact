@@ -4,9 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
+import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import static com.example.felipearango.appcompact.activitys.Activity_Login.TIPO_USUARIO;
 import static com.example.felipearango.appcompact.activitys.Activity_Login.calledAlready;
@@ -58,7 +62,24 @@ public class ManejoUser {
      * @param object         objeto a guardar
      */
     public Task<Void> insertar(String childDatabaseR, String key, Object object) {
-       return databaseReference.child(childDatabaseR).child(key).setValue(object);
+        return databaseReference.child(childDatabaseR).child(key).setValue(object);
+    }
+
+    public ArrayList<Entregable> insertarEntregable(final String childDatabaseR, final String key, Object object, final ArrayList<Entregable> listEntre) {
+
+       databaseReference.child(childDatabaseR).child(key).setValue(object).addOnCompleteListener(new OnCompleteListener<Void>() {
+           @Override
+           public void onComplete(@NonNull Task<Void> task) {
+               Log.e("Tam", listEntre.size()+"");
+               for (Entregable entregabl   :   listEntre) {
+                   databaseReference.child(childDatabaseR).child(key).child("entregable").child(entregabl.getId()).setValue(entregabl);
+               }
+
+           }
+       });
+        ArrayList<Entregable> po = new ArrayList<>();
+       return po;
+
     }
 
     public void ingresar(String email, String password, final Context context) {

@@ -1,7 +1,5 @@
 package com.example.felipearango.appcompact.clases;
 
-import java.util.ArrayList;
-
 /**
  * Created by Usuario_estudiante on 29/11/2017.
  */
@@ -15,47 +13,49 @@ public class Reto {
     /**
      * Email del profesor o empresa que publica el reto
      */
-    String emailResponsable;
+    private String emailResponsable;
 
     /**
      * Nombre del reto
      */
-    String nombre;
+    private String nombre;
 
     /**
      * Descripcion del reto
      */
-    String descripcion;
+    private String descripcion;
 
     /**
      * El tipo del reto puede ser: reto elite, de aula o rally
      */
-    String tipoReto;
+    private String tipoReto;
 
     /**
      * Fechas asignadas a entregas del reto
-     */
-    ArrayList<String> fechasEntrega;
+
+    ArrayList<String> fechasEntrega;   */
 
     /**
      * Numero de integrantes que pueden participar en el reto
      */
-    String numIntegrante;
+    private String numIntegrante;
 
     /**
      * El tipo de entrega para cada fecha, puede ser: video, documentos o imagenes
-     */
-    ArrayList<String> tipoEntrega;
+     *
+    ArrayList<String> tipoEntrega;*/
 
     /**
      * Un reto puede ser publico o privado
      */
-    String privacidad;
+    private String privacidad;
 
     /**
      * Un reto puede realizarse individual o en grupo
      */
-    String individualOGrupo;
+    private String individualOGrupo;
+
+    private String id;
 
     ///////////////////////////////////////////////
     //Constructor por defecto
@@ -67,20 +67,18 @@ public class Reto {
     ///////////////////////////////////////////////
     //Constructor con parametros
     ///////////////////////////////////////////////
-    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto,
-                ArrayList<String> fechasEntrega, String numIntegrante, ArrayList<String> tipoEntrega,
-                String privacidad, String individualOGrupo) {
 
+    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto, String numIntegrante, String privacidad, String individualOGrupo, String id) {
         this.emailResponsable = emailResponsable;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoReto = tipoReto;
-        this.fechasEntrega = fechasEntrega;
         this.numIntegrante = numIntegrante;
-        this.tipoEntrega = tipoEntrega;
         this.privacidad = privacidad;
         this.individualOGrupo = individualOGrupo;
+        this.id = id;
     }
+
 
     ///////////////////////////////////////////////
     //Getters & Setters
@@ -119,28 +117,12 @@ public class Reto {
         this.tipoReto = tipoReto;
     }
 
-    public ArrayList<String> getFechasEntrega() {
-        return fechasEntrega;
-    }
-
-    public void setFechasEntrega(ArrayList<String> fechasEntrega) {
-        this.fechasEntrega = fechasEntrega;
-    }
-
     public String getNumIntegrante() {
         return numIntegrante;
     }
 
     public void setNumIntegrante(String numIntegrante) {
         this.numIntegrante = numIntegrante;
-    }
-
-    public ArrayList<String> getTipoEntrega() {
-        return tipoEntrega;
-    }
-
-    public void setTipoEntrega(ArrayList<String> tipoEntrega) {
-        this.tipoEntrega = tipoEntrega;
     }
 
     public String getPrivacidad() {
@@ -157,5 +139,19 @@ public class Reto {
 
     public void setIndividualOGrupo(String individualOGrupo) {
         this.individualOGrupo = individualOGrupo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String toString(){
+        return "nombre: "+ getNombre() +" emailResponsable: "+getEmailResponsable()+ " descripcion: "+getDescripcion()+
+                " tipoReto: "+getTipoReto() +" numeroIntegrante: "+getNumIntegrante() +" privacidad: "+getPrivacidad()+
+                " individual O Grupo: "+getIndividualOGrupo();
     }
 }

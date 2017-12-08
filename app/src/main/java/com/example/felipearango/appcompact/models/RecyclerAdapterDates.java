@@ -54,7 +54,7 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.et.setText(mDataSet.get(position).getFecha());
-        holder.etType.setText(mDataSet.get(position).getTipo());
+        holder.etType.setText(mDataSet.get(position).getTipoEntrega());
 
         holder.btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override

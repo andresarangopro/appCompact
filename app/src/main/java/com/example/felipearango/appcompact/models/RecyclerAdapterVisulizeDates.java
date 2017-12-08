@@ -48,7 +48,7 @@ public class RecyclerAdapterVisulizeDates extends RecyclerView.Adapter<RecyclerA
     @Override
     public void onBindViewHolder(RecyclerAdapterVisulizeDates.ViewHolder holder, final int position) {
         holder.et.setText(mDataSet.get(position).getFecha());
-        holder.etType.setText(mDataSet.get(position).getTipo());
+        holder.etType.setText(mDataSet.get(position).getTipoEntrega());
 
     }
 

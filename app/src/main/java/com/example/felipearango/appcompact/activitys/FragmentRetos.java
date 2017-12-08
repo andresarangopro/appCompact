@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,14 +48,15 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     private String [] tiposEntrega = {"Seleccione el formato de entrega", "video", "imagenes", "documentos"};
     private  String [] individualGrupo = {"Reto individual o en grupo?", "individual", "grupo"};
     private ManejoUser mu = new ManejoUser();
-    private ArrayList<String> lstFechas = new ArrayList<>();
-    private ArrayList<String> lstEntregas = new ArrayList<>();
+ //   private ArrayList<String> lstFechas = new ArrayList<>();
+   // private ArrayList<String> lstEntregas = new ArrayList<>();
+    //private ArrayList<Entregable> listEntregable = new ArrayList<>();
     private FirebaseAuth mAuth;
 
 
     private RecyclerView mRecyclerDates;
     private RecyclerAdapterDates mDates;
-    private ArrayList<Entregable> mData = new ArrayList<>();
+    private ArrayList<Entregable> listEntregable = new ArrayList<>();
     private LinearLayoutManager mLinearLayoutManager;
     private Calendar myCalendar = Calendar.getInstance();
     private View view;
@@ -64,6 +66,7 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_retos, container, false);
        // NavegacionActivity.toolbar.setTitle("");
         initXml();
+        mu.inicializatedFireBase();
         return view;
     }
 
@@ -91,7 +94,7 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates = view.findViewById(R.id.rv_fechas);
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
-        mDates = new RecyclerAdapterDates(view.getContext(), mData);
+        mDates = new RecyclerAdapterDates(view.getContext(), listEntregable);
         mRecyclerDates.setAdapter(mDates);
 
         //Calendar -------------------------------------------
@@ -116,9 +119,9 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
      * Metodo para llenar las listas de fechas y tipos de entrega
      */
     private void llenarListas(){
-        for (Entregable entregable: mData) {
-            lstFechas.add(entregable.getFecha());
-            lstEntregas.add(entregable.getTipo());
+        for (Entregable entregable: listEntregable) {
+            //lstFechas.add(entregable.getFecha());
+          //  lstEntregas.add(entregable.getTipo());
         }
     }
 
@@ -128,23 +131,32 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btnPublicarReto:{
                 if(validarCampos()) {
-                    Entregable entregable = new Entregable(txtFecha.getText().toString(), spnTipoEntrega.getSelectedItem().toString());
-                    mData.add(0, entregable);
-                    llenarListas();
+                    String idEntregable = mu.databaseReference.push().getKey();
+                    Entregable entregable = new Entregable(idEntregable, txtFecha.getText().toString(),
+                            spnTipoEntrega.getSelectedItem().toString(),listEntregable.size());
+                    listEntregable.add(entregable);
+                   // llenarListas();
                     FirebaseUser user = mAuth.getCurrentUser();
+                    Log.e("Tam", listEntregable.size()+"");
+                    final String idReto = mu.databaseReference.push().getKey();
+                    Reto reto = new Reto(user.getEmail(), txtNombre.getText().toString(),
+                            txtDescripcion.getText().toString(), spnTipoReto.getSelectedItem().toString(),
+                            txtNumIntegrante.getText().toString(), spnPrivacidad.getSelectedItem().toString(),
+                            spnIndividualGrupo.getSelectedItem().toString(),idReto);
 
-                    Reto reto = new Reto(user.getEmail(), txtNombre.getText().toString(), txtDescripcion.getText().toString(), spnTipoReto.getSelectedItem().toString(), lstFechas,
-                            txtNumIntegrante.getText().toString(), lstEntregas, spnPrivacidad.getSelectedItem().toString(), spnIndividualGrupo.getSelectedItem().toString());
-                    String idJob = mu.databaseReference.push().getKey();
-                    mu.insertar("Retos", idJob, reto);
-                    mData.clear();
-                    lstEntregas.clear();
-                    lstFechas.clear();
+
+
+                    listEntregable = mu.insertarEntregable("Retos", idReto, reto, listEntregable);
+
+                   // listEntregable.clear();
+                   // lstEntregas.clear();
+                  //  lstFechas.clear();
                     Toast.makeText(view.getContext(), "Reto publicado", Toast.LENGTH_LONG).show();
                 }
                 break;
             }
             case R.id.btnAdd:{
+                String idEntregable = mu.databaseReference.push().getKey();
 
                 if(txtFecha.getText().toString().equals("")){
                     txtFecha.setError("Ingrese fecha!");
@@ -152,8 +164,10 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
                     txtFecha.setError("Seleccione tipo de entrega acá abajo");
                 }else{
                     int position = 0;
-                    Entregable entregable = new Entregable(txtFecha.getText().toString(), spnTipoEntrega.getSelectedItem().toString());
-                    mData.add(position,entregable);
+                    Entregable entregable = new Entregable(idEntregable,txtFecha.getText().toString(),
+                            spnTipoEntrega.getSelectedItem().toString(),listEntregable.size());
+                    listEntregable.add(position,entregable);
+
                     mDates.notifyItemInserted(position);
                     mDates.notifyDataSetChanged();
                     mRecyclerDates.scrollToPosition(position);

@@ -92,24 +92,24 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
         Fragment fragment = null;
 
         switch (item.getItemId()){
-            case R.id.nav_camera:{
+            case R.id.nav_perfil:{
                 fragment = new FragmentPerfil();
                 break;
             }
-            case R.id.nav_gallery:{
+            case R.id.nav_publicar_retos:{
                 fragment = new FragmentRetos();
                 break;
             }
-            case R.id.nav_slideshow:{
-                fragment = new  FragmentChooseChallenge();;
+            case R.id.nav_mis_retos:{
+                fragment = new FragmentVisualizarRetos();
                 break;
             }
-            case R.id.nav_manage:{
-                fragment = new FragmentRetos();
+            case R.id.nav_chat:{
+                fragment = new FragmentChat();
                 break;
             }
             case  R.id.nav_share:{
-                fragment = new FragmentChat();
+
                 break;
             }
             case R.id.nav_send:{

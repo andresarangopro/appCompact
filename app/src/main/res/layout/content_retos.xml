@@ -88,7 +88,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/edit_text_style_claro"
-                android:hint="Nombre reto"
+                android:hint="Fecha reto"
+                android:focusable="false"
                 android:paddingLeft="15dp"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent" />
