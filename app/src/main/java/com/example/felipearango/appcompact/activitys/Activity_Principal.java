@@ -101,7 +101,7 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
                 break;
             }
             case R.id.nav_mis_retos:{
-                fragment = new FragmentVisualizarRetos();
+                fragment = new FragmentChooseChallenge();
                 break;
             }
             case R.id.nav_chat:{

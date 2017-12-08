@@ -8,17 +8,7 @@
     android:layout_weight="150">
 
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_margin="5dp"
-        android:paddingLeft="15dp"
-        android:paddingStart="15dp"
-        android:id="@+id/rv_fechas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-
-   <!-- <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
@@ -104,6 +94,7 @@
 
     </android.support.v7.widget.RecyclerView>
 
+
     <TextView
         android:layout_margin="5dp"
         android:paddingLeft="15dp"
@@ -153,6 +144,6 @@
         android:gravity="center_vertical"
         android:hint="Privacidad del reto:"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />-->
+        android:textSize="20sp" />
 
 </LinearLayout>

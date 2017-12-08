@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.activitys.FragmentChooseChallenge;
+import com.example.felipearango.appcompact.activitys.FragmentVisualizarRetos;
 import com.example.felipearango.appcompact.clases.Reto;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
 
         public RecyclerAdapterHolder(View v) {
             super(v);
-            nombre = (TextView) itemView.findViewById(R.id.tvEncargado);
+            nombre = (TextView) itemView.findViewById(R.id.tvNombreReto);
             thisView = itemView;
         }
     }
@@ -48,7 +48,7 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
     @Override
     public RecyclerAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rv_ver_retos, parent, false);
+                .inflate(R.layout.rv_choose_challenge, parent, false);
         return new RecyclerAdapterHolder(inflatedView);
     }
 
@@ -58,7 +58,7 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
         holder.thisView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new FragmentChooseChallenge();
+                Fragment fragment = new FragmentVisualizarRetos();
                 args.putString(Keys.idReto,listRetos.get(position).getId());
                 fragment.setArguments(args);
                 transaction.replace(R.id.FrFragments, fragment);
