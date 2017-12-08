@@ -120,6 +120,10 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
             lstFechas.add(entregable.getFecha());
             lstEntregas.add(entregable.getTipo());
         }
+        lstEntregas.add("Hola 1");
+        lstEntregas.add("Hola");
+        lstFechas.add("Como 1");
+        lstFechas.add("Como");
     }
 
     @Override
@@ -161,14 +165,12 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
                     //  txtFecha.setText("");
                     break;
                 }
-
             }
             case R.id.etDates:{
                 pickData();
                 break;
             }
         }
-
     }
 
     private void updateLabel() {

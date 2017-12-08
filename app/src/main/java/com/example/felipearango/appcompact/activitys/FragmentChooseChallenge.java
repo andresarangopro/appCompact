@@ -52,12 +52,12 @@ public class FragmentChooseChallenge extends Fragment {
 
         Toast.makeText(getContext(), mRecyclerChallenges.getAdapter().toString(), Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment*/
-      dra();
+        dra();
         return view;
     }
 
     private void dra(){
-        mDataTest.add(new Entregable("Fecha","tipo"));
+        inicializeArray();
         recycler = (RecyclerView) view.findViewById(R.id.rv_desafíos);
         recycler.setHasFixedSize(true);
 
@@ -66,26 +66,17 @@ public class FragmentChooseChallenge extends Fragment {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new RecyclerAdapterDates(view.getContext(), mDataTest);
+        adapter = new RecyclerAdapterChallenges(view.getContext(), mData);
         recycler.setAdapter(adapter);
     }
 
     private void inicializeArray(){
         ArrayList<String> asd = new ArrayList<>();
         asd.add("Hola");
+        asd.add("Hola 2");
         //Recycler -----------------------------
         Reto reto = new Reto("Hola", "dos", "tres", "Cuatro", asd, "Seis", asd, "Ocho", "Nueve");
         mData.add(reto);
 
     }
-
-    private void inicializeRecycler(){
-
-        inicializeArray();
-
-        adapterChallenges.notifyItemInserted(0);
-        adapterChallenges.notifyDataSetChanged();
-        mRecyclerChallenges.scrollToPosition(0);
-    }
-
 }
