@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="com.example.felipearango.appcompact.activitys.FragmentCreateClassroom">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="¡Crea tú aula!"
+            android:textColor="@color/colorYellow"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="15"
+            android:background="@drawable/edit_text_style_claro"
+            android:drawablePadding="10dp"
+            android:hint="Nombra tú aula"
+            android:paddingLeft="5dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:id="@+id/txtNombreAula"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="40"
+            android:background="@drawable/edit_text_style_claro"
+            android:drawablePadding="10dp"
+            android:hint="Agrega una descripción!"
+            android:paddingLeft="5dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:id="@+id/txtDescripcionAula"/>
+
+
+        <Button
+            android:id="@+id/btnPublicarAula"
+            android:textSize="20dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="15"
+            android:background="@color/colorAccentDark"
+            android:text="Crear el aula" />
+
+</LinearLayout>

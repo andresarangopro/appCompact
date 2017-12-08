@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Reto;
@@ -25,6 +25,10 @@ public class FragmentVisualizarRetos extends Fragment {
     /////////////////////////////////////
     //Variables
     ////////////////////////////////////
+    TextView tvEncargado, tvNombre, tvDescripcion, tvTipo, tvFechas, tvEntregas, tvIndividualGrupo,
+                tvNumIntegrantes, tvPrivacidad;
+    ArrayList<Reto> lstRetos = new ArrayList<>();
+    String rpta;
 
     private RecyclerView mRecyclerDates;
     private RecyclerAdapterRetos mDates;
@@ -45,7 +49,6 @@ public class FragmentVisualizarRetos extends Fragment {
         selectData();
 
         return view;
-
     }
 
     private void initXml(){

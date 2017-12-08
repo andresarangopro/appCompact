@@ -27,7 +27,7 @@ public class RecyclerAdapterChallenges extends RecyclerView.Adapter<RecyclerAdap
 
     private ArrayList<Reto> mDataSet;
     private Context mContext;
-
+    public static Reto retoChallenge = null;
 
     public RecyclerAdapterChallenges(Context context, ArrayList<Reto> mDataSet){
         this.mContext = context;
@@ -57,15 +57,16 @@ public class RecyclerAdapterChallenges extends RecyclerView.Adapter<RecyclerAdap
     public void onBindViewHolder(RecyclerAdapterChallenges.ViewHolder holder, final int position) {
         holder.tvNombre.setText(mDataSet.get(position).getNombre());
         holder.tvType.setText(mDataSet.get(position).getPrivacidad());
-        holder.tvGroup.setText(mDataSet.get(position).getIndividualOGrupo());/*
+        holder.tvGroup.setText(mDataSet.get(position).getIndividualOGrupo());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                retoChallenge = mDataSet.get(position);
                 Activity_Principal activity = (Activity_Principal)view.getContext();
                 FragmentVisualizarRetos fragmentVisualizarRetos = new FragmentVisualizarRetos();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.FrFragments, fragmentVisualizarRetos).addToBackStack(null).commit();
             }
-        });*/
+        });
     }
 
     @Override
