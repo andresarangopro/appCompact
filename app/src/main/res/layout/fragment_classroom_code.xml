@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:isScrollContainer="false"
+    tools:context="com.example.felipearango.appcompact.activitys.FragmentClassroomCode">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="¡Completa tú aula!"
+        android:textColor="@color/colorYellow"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="12"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Con este código podrás compartir tú aula con las personas que desees."
+        android:textColor="@color/colorYellowIcons"
+        android:textSize="15sp"
+        android:textStyle="italic|bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="12"
+        android:background="@drawable/edit_text_style_claro"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="ASD123456"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="O, puedes agregarlos por correo eletrónico:"
+        android:textColor="@color/colorYellowIcons"
+        android:textSize="15sp"
+        android:textStyle="italic|bold" />
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rv_with_border_gray"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_weight="15"
+        android:weightSum="10"
+        android:layout_height="0dp">
+        <EditText
+            android:padding="6dp"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:id="@+id/etEmail"
+            android:textColor="@color/colorAccent"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_claro_border"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btnAdd"
+            android:background="@drawable/circular_button"
+            android:layout_weight="3"
+            android:text="+"
+            android:textSize="25sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="24">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_estudiantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnPublicarReto"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:background="@color/colorAccentDark"
+        android:text="Publicar aula" />
+
+</LinearLayout>

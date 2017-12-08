@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Reto;
+import com.example.felipearango.appcompact.models.RecyclerAdapterChallenges;
+import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
 import com.example.felipearango.appcompact.models.RecyclerAdapterVisulizeDates;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +38,10 @@ public class FragmentVisualizarRetos extends Fragment {
     private RecyclerAdapterVisulizeDates mDates;
     private ArrayList<Entregable> mData = new ArrayList<>();
     private LinearLayoutManager mLinearLayoutManager;
-    private ArrayList<TextView> etData = new ArrayList<>();
+
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
 
     public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     DatabaseReference RetosRef = databaseReference.child("Retos");
@@ -45,7 +51,7 @@ public class FragmentVisualizarRetos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment_visualizar_retos, container, false);
         initXml();
-        selectData();
+
         return view;
     }
 
@@ -61,19 +67,36 @@ public class FragmentVisualizarRetos extends Fragment {
         tvNumIntegrantes = view.findViewById(R.id.tvNumIntegrantes);
         tvPrivacidad =  view.findViewById(R.id.tvPrivacidad);
 
-        etData.add(tvEncargado);
-        etData.add(tvNombre);
-        etData.add(tvDescripcion);
-        etData.add(tvIndividualGrupo);
-        etData.add(tvNumIntegrantes);
-        etData.add(tvPrivacidad);
+        textTextView();
 
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerDates = view.findViewById(R.id.rv_fechas);
-        mRecyclerDates.setLayoutManager(mLinearLayoutManager);
-        mDates = new RecyclerAdapterVisulizeDates(getContext(), mData);
+        dra();
     }
 
+    private void textTextView(){
+        Reto reto = RecyclerAdapterChallenges.retoChallenge;
+        tvEncargado.setText(reto.getEmailResponsable());
+        tvNombre.setText(reto.getNombre());
+        tvDescripcion.setText(reto.getDescripcion());
+        tvTipo.setText(reto.getTipoReto());
+        tvIndividualGrupo.setText(reto.getIndividualOGrupo());
+        tvNumIntegrantes.setText(reto.getNumIntegrante());
+        tvPrivacidad.setText(reto.getPrivacidad());
+        mData = setArray(reto.getFechasEntrega(), reto.getTipoEntrega());
+    }
+
+    private ArrayList<Entregable> setArray(ArrayList<String> fechasEntrega, ArrayList<String> tipoEntrega) {
+        ArrayList<Entregable> entregables = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < fechasEntrega.size(); i++) {
+                entregables.add(new Entregable(fechasEntrega.get(i), tipoEntrega.get(i)));
+            }
+        }catch (Exception e){
+            Log.e(e.getMessage(), "No se cargó bien el arraylist");
+        }
+        return entregables;
+    }
+/*
     private void selectData(){
         RetosRef.orderByChild("nombre").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -83,7 +106,7 @@ public class FragmentVisualizarRetos extends Fragment {
                 mData.add(entregable);
                 lstRetos.add(reto);
                 lstRetos.clear();
-                mRecyclerDates.setAdapter(mDates);
+                recycler.setAdapter(mDates);
                 mData.clear();
             }
 
@@ -92,6 +115,20 @@ public class FragmentVisualizarRetos extends Fragment {
 
             }
         });
+    }
+*/
+    private void dra(){
+
+        recycler =  view.findViewById(R.id.rv_fechas);
+        recycler.setHasFixedSize(true);
+
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(view.getContext());
+        recycler.setLayoutManager(lManager);
+
+        // Crear un nuevo adaptador
+        adapter = new RecyclerAdapterDates(view.getContext(), mData);
+        recycler.setAdapter(adapter);
     }
 
 }

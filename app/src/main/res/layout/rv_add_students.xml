@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/rv_with_border_gray"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_weight="10"
+    android:weightSum="10"
+    android:layout_height="80dp">
+    <TextView
+        android:padding="6dp"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:id="@+id/tvEmail"
+        android:textColor="@color/colorAccent"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edit_text_claro_border"
+        android:layout_weight="7"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/btnAdd"
+        android:background="@drawable/circular_button"
+        android:layout_weight="3"
+        android:text="+"
+        android:textSize="25sp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+</LinearLayout>
