@@ -115,19 +115,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
         spnIndividualGrupo.setAdapter(adapter3);
     }
 
-    /**
-     * Metodo para llenar las listas de fechas y tipos de entrega
-     */
-    private void llenarListas(){
-        for (Entregable entregable: listEntregable) {
-            //lstFechas.add(entregable.getFecha());
-          //  lstEntregas.add(entregable.getTipo());
-        }
-        lstEntregas.add("Hola 1");
-        lstEntregas.add("Hola");
-        lstFechas.add("Como 1");
-        lstFechas.add("Como");
-    }
 
     @Override
     public void onClick(View v) {
