@@ -12,9 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.clases.Entregable;
+import com.example.felipearango.appcompact.clases.Usuario_estudiante;
+import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterAddStudent;
-import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
+import com.example.felipearango.appcompact.models.Util;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -28,8 +32,12 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
     private RecyclerView.LayoutManager lManager;
     private ArrayList<String> mData= new ArrayList<>();
     private View view;
-    private Button btnAdd;
+    private Button btnAdd, btnPublicarAula;
     private EditText etEmail;
+    private TextView tvKey;
+    private ManejoUser mn = new ManejoUser();
+    final ArrayList<Usuario_estudiante> lstUser = new ArrayList<>();
+    final ArrayList<String> lstEstudiantes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,12 +47,12 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         setRecycler();
         initComponents();
+        initListStudents();
         return view;
     }
 
     private void setRecycler(){
 
-        mData.add("HOLA");
         recycler = (RecyclerView) view.findViewById(R.id.rv_estudiantes);
         recycler.setHasFixedSize(true);
 
@@ -60,8 +68,12 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
     private void initComponents(){
         etEmail = view.findViewById(R.id.etEmail);
         btnAdd = view.findViewById(R.id.btnAdd);
+        btnPublicarAula = view.findViewById(R.id.btnPublicarAula);
+        tvKey = view.findViewById(R.id.tvKeyAula);
+        mn.inicializatedFireBase();
+        tvKey.setText(FragmentCreateClassroom.key_aula);
         btnAdd.setOnClickListener(this);
-
+        btnPublicarAula.setOnClickListener(this);
     }
 
     @Override
@@ -69,15 +81,71 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
         switch (view.getId()){
             case R.id.btnAdd: {
-                int position = 0;
-                mData.add(position,etEmail.getText().toString());
-                adapter.notifyItemInserted(position);
-                adapter.notifyDataSetChanged();
-                recycler.scrollToPosition(position);
-                etEmail.setText("");
+                if(validarCampos()) {
+                    if(userExist(etEmail.getText().toString()) == true) {
+                        int position = 0;
+                        mData.add(position, etEmail.getText().toString());
+                        adapter.notifyItemInserted(position);
+                        adapter.notifyDataSetChanged();
+                        recycler.scrollToPosition(position);
+                        etEmail.setText("");
+                    } else{
+                        etEmail.setError("El usuario no esta registrado");
+                    }
+                }
 
                 break;
             }
+            case R.id.btnPublicarAula:
+                if(validarCampos()){
+                    if(userExist(etEmail.getText().toString()) == true) {
+                        mData.add(0, etEmail.getText().toString());
+                        mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
+                                mData, FragmentCreateClassroom.key_aula, lstEstudiantes);
+                    }
+                    else {
+                        etEmail.setError("El usuario no esta registrado");
+                        break;
+                    }
+                }
+                break;
         }
+    }
+
+    private void initListStudents(){
+        mn.databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot user:dataSnapshot.getChildren()) {
+                    Usuario_estudiante u = user.getValue(Usuario_estudiante.class);
+                    lstUser.add(u);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private boolean validarCampos(){
+        return !Util.emptyCampMSG(etEmail,"Ingrese Correo");
+    }
+
+    /**
+     * Metodo para validar que el usuario que se va agregar al RecyclerView este registrado en la BD
+     * @param email
+     * @return
+     */
+    private boolean userExist(String email){
+        for (Usuario_estudiante user:
+             lstUser) {
+            if(user.getCorreo().toString().equals(email)) {
+                lstEstudiantes.add(user.getUid());
+                return true;
+            }
+        }
+        return false;
     }
 }

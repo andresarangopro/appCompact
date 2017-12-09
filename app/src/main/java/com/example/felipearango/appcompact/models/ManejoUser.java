@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
+import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +42,7 @@ public class ManejoUser {
     public FirebaseAuth firebaseAuth;
     public FirebaseDatabase firebaseDatabase;
     public ProgressDialog progressDialog;
+    public FirebaseUser firebaseUser;
 
 
     ///////////////////
@@ -100,6 +102,7 @@ public class ManejoUser {
    public void inicializatedFireBase(){
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         if (!calledAlready) {
             firebaseDatabase.setPersistenceEnabled(true);
             calledAlready = true;
@@ -176,4 +179,20 @@ public class ManejoUser {
             }
         });
     }
+
+    public void registrarAula(String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key, ArrayList<String> lstEstudiantes){
+        Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes);
+        insertar("Aulas", key, aula);
+
+        //Agregar aula a profesor
+        databaseReference.child("Users").child(firebaseUser.getUid()).child("Aulas").push().setValue(key);
+
+        //Agregar aula a estudiantes
+        for (String estudiante:
+             lstEstudiantes) {
+            databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
+        }
+    }
+
+
 }

@@ -109,7 +109,7 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
                 break;
             }
             case  R.id.nav_share:{
-
+                fragment = new FragmentCreateClassroom();
                 break;
             }
             case R.id.nav_send:{
