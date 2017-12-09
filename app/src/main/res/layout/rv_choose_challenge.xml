@@ -29,6 +29,7 @@
         <TextView
             android:id="@+id/tvPrivacidad"
             android:textColor="@color/colorAccentDark"
+            android:textStyle="bold"
             android:text="Privado o público"
             android:textSize="20sp"
             android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             android:id="@+id/tvIndividualGrupo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_weight="1"
             android:text="Individual/grupo"
             android:textColor="@color/colorAccentDark"

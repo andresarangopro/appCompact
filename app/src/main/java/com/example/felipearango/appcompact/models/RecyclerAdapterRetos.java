@@ -29,11 +29,15 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
 
     public static class RecyclerAdapterHolder extends RecyclerView.ViewHolder {
         public TextView nombre;
+        public TextView privacidad;
+        public TextView tamaño;
         private View thisView;
 
         public RecyclerAdapterHolder(View v) {
             super(v);
             nombre = (TextView) itemView.findViewById(R.id.tvNombreReto);
+            privacidad = (TextView) itemView.findViewById(R.id.tvPrivacidad);
+            tamaño = (TextView) itemView.findViewById(R.id.tvIndividualGrupo);
             thisView = itemView;
         }
     }
@@ -55,6 +59,8 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
     @Override
     public void onBindViewHolder(RecyclerAdapterHolder holder, final int position) {
         holder.nombre.setText(listRetos.get(position).getNombre());
+        holder.privacidad.setText(listRetos.get(position).getPrivacidad());
+        holder.tamaño.setText(listRetos.get(position).getIndividualOGrupo());
         holder.thisView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
