@@ -56,12 +56,14 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
             case R.id.btnAggUserAula:
                 if(!Util.emptyCampMSG(txtKeyAula,"Por favor ingrese el codigo del aula")){
                     if(existAula(txtKeyAula.getText().toString())) {
-                        mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
-                        Aula aula = new Aula();
-                        aula = findAula(txtKeyAula.getText().toString());
-                        aula.getLstIntegrantes().add(0, mn.firebaseUser.getEmail());
-                        mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
-                        Toast.makeText(getContext(),"Has sido agregado al aula", Toast.LENGTH_SHORT).show();
+                        if(!existUserInAula(mn.firebaseUser.getEmail())) {
+                            mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
+                            Aula aula = new Aula();
+                            aula = findAula(txtKeyAula.getText().toString());
+                            aula.getLstIntegrantes().add(0, mn.firebaseUser.getEmail());
+                            mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
+                            Toast.makeText(getContext(), "Has sido agregado al aula", Toast.LENGTH_SHORT).show();
+                        } else Toast.makeText(getContext(), "Ya estas registrado en esta aula", Toast.LENGTH_SHORT).show();
                     }else txtKeyAula.setError("Esta aula no existe");
                 }
         }
@@ -104,5 +106,16 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
             }
         }
         return null;
+    }
+
+    private boolean existUserInAula(String emailUser){
+        for (Aula aula:
+             lstAulaStudentLog) {
+            for (String email:
+                 aula.getLstIntegrantes()) {
+                if(email.equals(emailUser)) return true;
+            }
+        }
+        return false;
     }
 }
