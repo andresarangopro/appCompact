@@ -108,6 +108,10 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
                 fragment = new FragmentChat();
                 break;
             }
+            case R.id.nav_aulas:{
+                fragment = new FragmentMyClassroom();
+                break;
+            }
             case  R.id.nav_share:{
                 fragment = new FragmentCreateClassroom();
                 break;

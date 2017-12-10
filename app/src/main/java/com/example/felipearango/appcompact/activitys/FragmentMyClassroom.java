@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Aula;
@@ -56,6 +57,11 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                 if(!Util.emptyCampMSG(txtKeyAula,"Por favor ingrese el codigo del aula")){
                     if(existAula(txtKeyAula.getText().toString())) {
                         mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
+                        Aula aula = new Aula();
+                        aula = findAula(txtKeyAula.getText().toString());
+                        aula.getLstIntegrantes().add(0, mn.firebaseUser.getEmail());
+                        mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
+                        Toast.makeText(getContext(),"Has sido agregado al aula", Toast.LENGTH_SHORT).show();
                     }else txtKeyAula.setError("Esta aula no existe");
                 }
         }
@@ -88,5 +94,15 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
             if(aula.getKey().equals(key)) return true;
         }
         return false;
+    }
+
+    private Aula findAula(String key){
+        for (Aula aula:
+             lstAulas) {
+            if(aula.getKey().equals(key)){
+                return aula;
+            }
+        }
+        return null;
     }
 }
