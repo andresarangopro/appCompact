@@ -52,21 +52,25 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch(view.getId()) {
             case R.id.btnAggUserAula:
-                if(!Util.emptyCampMSG(txtKeyAula,"Por favor ingrese el codigo del aula")){
-                    if(existAula(txtKeyAula.getText().toString())) {
-                        if(!existUserInAula(mn.firebaseUser.getEmail())) {
+                if (!Util.emptyCampMSG(txtKeyAula, "Por favor ingrese el codigo del aula")) {
+                    Aula aula = new Aula();
+                    aula = findAula(txtKeyAula.getText().toString());
+                    if (aula != null) {
+                        if (!existUserInAula(aula, mn.firebaseUser.getEmail())) {
+                            //Se agrega el aula al usuario
                             mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
-                            Aula aula = new Aula();
-                            aula = findAula(txtKeyAula.getText().toString());
                             aula.getLstIntegrantes().add(0, mn.firebaseUser.getEmail());
+                            //Se agrega el usuario al aula
                             mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
                             Toast.makeText(getContext(), "Has sido agregado al aula", Toast.LENGTH_SHORT).show();
-                        } else Toast.makeText(getContext(), "Ya estas registrado en esta aula", Toast.LENGTH_SHORT).show();
-                    }else txtKeyAula.setError("Esta aula no existe");
+                        } else
+                            Toast.makeText(getContext(), "Ya estas registrado en esta aula", Toast.LENGTH_SHORT).show();
+                    } else txtKeyAula.setError("Esta aula no existe");
                 }
         }
+
     }
 
     private void initListStudents(){
@@ -77,9 +81,12 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                     Aula a = aula.getValue(Aula.class);
                     lstAulas.add(a);
 
-                    for (String student:
-                         a.getLstIntegrantes()) {
-                        if(student.equals(mn.firebaseUser.getEmail())) lstAulaStudentLog.add(a);
+                    if(a.getLstIntegrantes().size() != 0) {
+                        for (String student :
+                                a.getLstIntegrantes()) {
+                            if (student.equals(mn.firebaseUser.getEmail()))
+                                lstAulaStudentLog.add(a);
+                        }
                     }
                 }
             }
@@ -88,14 +95,6 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
 
             }
         });
-    }
-
-    private boolean existAula(String key){
-        for (Aula aula:
-             lstAulas) {
-            if(aula.getKey().equals(key)) return true;
-        }
-        return false;
     }
 
     private Aula findAula(String key){
@@ -108,13 +107,10 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         return null;
     }
 
-    private boolean existUserInAula(String emailUser){
-        for (Aula aula:
-             lstAulaStudentLog) {
-            for (String email:
-                 aula.getLstIntegrantes()) {
-                if(email.equals(emailUser)) return true;
-            }
+    private boolean existUserInAula(Aula aula, String emailUser){
+        for (String email:
+             aula.getLstIntegrantes()) {
+            if(email.equals(emailUser)) return true;
         }
         return false;
     }
