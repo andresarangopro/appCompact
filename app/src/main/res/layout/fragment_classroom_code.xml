@@ -62,17 +62,19 @@
         android:layout_weight="15"
         android:weightSum="10"
         android:layout_height="0dp">
+
         <EditText
-            android:padding="6dp"
-            android:textSize="20sp"
-            android:gravity="center_vertical"
             android:id="@+id/etEmail"
-            android:textColor="@color/colorAccent"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/edit_text_claro_border"
-            android:layout_weight="7"
             android:layout_width="0dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7"
+            android:background="@drawable/edit_text_claro_border"
+            android:gravity="center_vertical"
+            android:inputType="textEmailAddress"
+            android:padding="6dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
         <Button
             android:id="@+id/btnAdd"
             android:background="@drawable/circular_button"

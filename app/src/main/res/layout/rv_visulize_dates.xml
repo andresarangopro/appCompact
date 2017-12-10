@@ -40,6 +40,4 @@
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent" />
     </LinearLayout>
-
-
 </LinearLayout>

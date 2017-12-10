@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
@@ -78,11 +79,11 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-
+        String email = etEmail.getText().toString();
         switch (view.getId()){
             case R.id.btnAdd: {
-                if(validarCampos()) {
-                    if(userExist(etEmail.getText().toString()) == true) {
+                if(!validateEmpty(email)) {
+                    if(userExist(email)) {
                         int position = 0;
                         mData.add(position, etEmail.getText().toString());
                         adapter.notifyItemInserted(position);
@@ -93,23 +94,19 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                         etEmail.setError("El usuario no esta registrado");
                     }
                 }
-
                 break;
             }
-            case R.id.btnPublicarAula:
-                if(validarCampos()){
-                    if(userExist(etEmail.getText().toString()) == true) {
-                        mData.add(0, etEmail.getText().toString());
-                        mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
-                                mData, FragmentCreateClassroom.key_aula, lstEstudiantes);
-                    }
-                    else {
-                        etEmail.setError("El usuario no esta registrado");
-                        break;
-                    }
-                }
+            case R.id.btnPublicarAula:{
+                mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
+                        mData, FragmentCreateClassroom.key_aula, lstEstudiantes);
+                Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
                 break;
+            }
         }
+    }
+
+    private boolean validateEmpty(String email) {
+        return email.equals("");
     }
 
     private void initListStudents(){
@@ -129,9 +126,6 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
     }
 
-    private boolean validarCampos(){
-        return !Util.emptyCampMSG(etEmail,"Ingrese Correo");
-    }
 
     /**
      * Metodo para validar que el usuario que se va agregar al RecyclerView este registrado en la BD
@@ -139,9 +133,8 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
      * @return
      */
     private boolean userExist(String email){
-        for (Usuario_estudiante user:
-             lstUser) {
-            if(user.getCorreo().toString().equals(email)) {
+        for (Usuario_estudiante user: lstUser) {
+            if(user.getCorreo().equalsIgnoreCase(email)) {
                 lstEstudiantes.add(user.getUid());
                 return true;
             }
