@@ -13,24 +13,27 @@ public class Aula {
     private String descripcion;
     private ArrayList<String> lstIntegrantes;
     private ArrayList<String> lstRetos;
+    private String key;
 
 
     public Aula() {
     }
 
-    public Aula(String profesor, String nombre, String descripcion, ArrayList<String> lstIntegrantes) {
+    public Aula(String profesor, String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key) {
         this.profesor = profesor;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.lstIntegrantes = lstIntegrantes;
+        this.key = key;
     }
 
-    public Aula(String profesor, String nombre, String descripcion, ArrayList<String> lstIntegrantes, ArrayList<String> lstRetos) {
+    public Aula(String profesor, String nombre, String descripcion, ArrayList<String> lstIntegrantes, ArrayList<String> lstRetos, String key) {
         this.profesor = profesor;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.lstIntegrantes = lstIntegrantes;
         this.lstRetos = lstRetos;
+        this.key = key;
     }
 
     public String getProfesor() {
@@ -71,5 +74,13 @@ public class Aula {
 
     public void setLstRetos(ArrayList<String> lstRetos) {
         this.lstRetos = lstRetos;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

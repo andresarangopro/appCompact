@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
+import com.example.felipearango.appcompact.activitys.FragmentCreateClassroom;
 import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
@@ -181,7 +182,7 @@ public class ManejoUser {
     }
 
     public void registrarAula(String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key, ArrayList<String> lstEstudiantes){
-        Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes);
+        Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes, FragmentCreateClassroom.key_aula);
         insertar("Aulas", key, aula);
 
         //Agregar aula a profesor

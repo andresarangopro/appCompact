@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="com.example.felipearango.appcompact.activitys.FragmentMyClassroom">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:hint="Ingresa el codigo del aula"
+        android:background="@color/colorAccent"
+        android:id="@+id/txtKeyAula"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:text="Unirse a aula"
+        android:id="@+id/btnAggUserAula"/>
+
+</LinearLayout>
