@@ -95,11 +95,13 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                 break;
             }
             case R.id.btnPublicarAula:{
-                if(!lstEstudiantes.isEmpty()) {
+                if(lstEstudiantes.isEmpty()) {
+                    lstEstudiantes.add(" ");
+                }
                     mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
                             lstEstudiantes, FragmentCreateClassroom.key_aula);
                     Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
-                } else etEmail.setError("Por favor agregue minimo un estudiante");
+                //} else etEmail.setError("Por favor agregue minimo un estudiante");
                 break;
             }
         }

@@ -61,6 +61,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                         if (!existUserInAula(aula, mn.firebaseUser.getUid())) {
                             //Se agrega el aula al usuario
                             mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
+                            if(aula.getLstIntegrantes().get(0).equals(" ")) aula.getLstIntegrantes().clear();
                             aula.getLstIntegrantes().add(0, mn.firebaseUser.getUid());
                             //Se agrega el usuario al aula
                             mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
@@ -80,7 +81,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                 for (DataSnapshot aula:dataSnapshot.getChildren()) {
                     Aula a = aula.getValue(Aula.class);
                     lstAulas.add(a);
-                    if(a != null) {
+                    if(a != null && !a.getLstIntegrantes().get(0).equals(" ")) {
                         for (String student :
                                 a.getLstIntegrantes()) {
                             if (student.equals(mn.firebaseUser.getEmail()))
