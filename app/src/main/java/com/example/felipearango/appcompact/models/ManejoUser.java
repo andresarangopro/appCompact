@@ -181,7 +181,7 @@ public class ManejoUser {
         });
     }
 
-    public void registrarAula(String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key, ArrayList<String> lstEstudiantes){
+    public void registrarAula(String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key){
         Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes, FragmentCreateClassroom.key_aula);
         insertar("Aulas", key, aula);
 
@@ -190,7 +190,7 @@ public class ManejoUser {
 
         //Agregar aula a estudiantes
         for (String estudiante:
-             lstEstudiantes) {
+             lstIntegrantes) {
             databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
         }
     }

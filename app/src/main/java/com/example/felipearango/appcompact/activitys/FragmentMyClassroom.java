@@ -36,7 +36,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragment_my_classroom, container, false);
         mn.inicializatedFireBase();
-        initListStudents();
+        initListAulas();
         initComponents();
 
         return view;
@@ -58,10 +58,10 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                     Aula aula = new Aula();
                     aula = findAula(txtKeyAula.getText().toString());
                     if (aula != null) {
-                        if (!existUserInAula(aula, mn.firebaseUser.getEmail())) {
+                        if (!existUserInAula(aula, mn.firebaseUser.getUid())) {
                             //Se agrega el aula al usuario
                             mn.databaseReference.child("Users").child(mn.firebaseUser.getUid()).child("Aulas").push().setValue(txtKeyAula.getText().toString());
-                            aula.getLstIntegrantes().add(0, mn.firebaseUser.getEmail());
+                            aula.getLstIntegrantes().add(0, mn.firebaseUser.getUid());
                             //Se agrega el usuario al aula
                             mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
                             Toast.makeText(getContext(), "Has sido agregado al aula", Toast.LENGTH_SHORT).show();
@@ -73,15 +73,14 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
 
     }
 
-    private void initListStudents(){
+    private void initListAulas(){
         mn.databaseReference.child("Aulas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot aula:dataSnapshot.getChildren()) {
                     Aula a = aula.getValue(Aula.class);
                     lstAulas.add(a);
-
-                    if(a.getLstIntegrantes().size() != 0) {
+                    if(a != null) {
                         for (String student :
                                 a.getLstIntegrantes()) {
                             if (student.equals(mn.firebaseUser.getEmail()))
@@ -107,10 +106,10 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         return null;
     }
 
-    private boolean existUserInAula(Aula aula, String emailUser){
-        for (String email:
+    private boolean existUserInAula(Aula aula, String keyUser){
+        for (String key:
              aula.getLstIntegrantes()) {
-            if(email.equals(emailUser)) return true;
+            if(key.equals(keyUser)) return true;
         }
         return false;
     }

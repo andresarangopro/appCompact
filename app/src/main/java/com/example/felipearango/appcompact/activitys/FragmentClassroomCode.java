@@ -16,7 +16,6 @@ import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
 import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterAddStudent;
-import com.example.felipearango.appcompact.models.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -79,11 +78,10 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        String email = etEmail.getText().toString();
         switch (view.getId()){
             case R.id.btnAdd: {
-                if(!validateEmpty(email)) {
-                    if(userExist(email)) {
+                if(!validateEmpty(etEmail.getText().toString())) {
+                    if(userExist(etEmail.getText().toString())) {
                         int position = 0;
                         mData.add(position, etEmail.getText().toString());
                         adapter.notifyItemInserted(position);
@@ -97,9 +95,11 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                 break;
             }
             case R.id.btnPublicarAula:{
-                mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
-                        mData, FragmentCreateClassroom.key_aula, lstEstudiantes);
-                Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
+                if(!lstEstudiantes.isEmpty()) {
+                    mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
+                            lstEstudiantes, FragmentCreateClassroom.key_aula);
+                    Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
+                } else etEmail.setError("Por favor agregue minimo un estudiante");
                 break;
             }
         }
