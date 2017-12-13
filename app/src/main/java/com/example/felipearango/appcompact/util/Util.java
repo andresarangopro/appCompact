@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.models;
+package com.example.felipearango.appcompact.util;
 
 import android.widget.EditText;
 

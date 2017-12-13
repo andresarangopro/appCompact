@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="com.example.felipearango.appcompact.activitys.FragmentChooseChallenge">
+    tools:context="com.example.felipearango.appcompact.Fragments.FragmentChooseChallenge">
 
     <TextView
         android:id="@+id/tvRegitro"

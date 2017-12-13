@@ -10,14 +10,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.models.ManejoUser;
-import com.example.felipearango.appcompact.models.Util;
+import com.example.felipearango.appcompact.util.ManejoUser;
+import com.example.felipearango.appcompact.util.Util;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.example.felipearango.appcompact.models.Util.usuario_empresa;
-import static com.example.felipearango.appcompact.models.Util.usuario_estudiante;
-import static com.example.felipearango.appcompact.models.Util.usuario_profesor;
+import static com.example.felipearango.appcompact.util.Util.usuario_empresa;
+import static com.example.felipearango.appcompact.util.Util.usuario_estudiante;
+import static com.example.felipearango.appcompact.util.Util.usuario_profesor;
 
 public class Activity_Register extends AppCompatActivity implements View.OnClickListener{
 

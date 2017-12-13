@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_weight="150"
 
-    tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
+    tools:context="com.example.felipearango.appcompact.Fragments.FragmentRetos">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

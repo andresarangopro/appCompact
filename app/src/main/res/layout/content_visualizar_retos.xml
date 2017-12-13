@@ -148,4 +148,48 @@
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginBottom="20dp"
+           android:gravity="center_vertical">
+           <EditText
+               android:layout_margin="5dp"
+               android:paddingLeft="15dp"
+               android:paddingStart="15dp"
+               android:textColorHint="@color/colorAccent"
+               android:background="@drawable/edit_text_style_claro"
+               android:id="@+id/etComentar"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="0.8"
+               android:hint="Comentario..."
+               android:textColor="@color/colorAccent"
+               android:textSize="20sp" />
+           <ImageView
+               android:id="@+id/iVsendComentario"
+               android:src="@drawable/ic_send_blue"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="0.2"/>
+       </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_coment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+
 </LinearLayout>

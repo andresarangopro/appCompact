@@ -16,8 +16,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.example.felipearango.appcompact.Fragments.FragmentChat;
+import com.example.felipearango.appcompact.Fragments.FragmentChooseChallenge;
+import com.example.felipearango.appcompact.Fragments.FragmentCreateClassroom;
+import com.example.felipearango.appcompact.Fragments.FragmentMyClassroom;
+import com.example.felipearango.appcompact.Fragments.FragmentPerfil;
+import com.example.felipearango.appcompact.Fragments.FragmentRetos;
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.util.ManejoUser;
 
 public class Activity_Principal extends AppCompatActivity   implements  NavigationView.OnNavigationItemSelectedListener{
 
