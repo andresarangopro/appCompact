@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/sl"
     android:background="@drawable/green_image"
-    tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
+    tools:context="com.example.felipearango.appcompact.Fragments.FragmentRetos">
 
     <include layout="@layout/content_retos" />
 

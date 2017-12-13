@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.activitys;
+package com.example.felipearango.appcompact.Fragments;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Reto;
-import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.util.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterDates;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

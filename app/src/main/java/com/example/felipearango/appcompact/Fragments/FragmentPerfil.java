@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.activitys;
+package com.example.felipearango.appcompact.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

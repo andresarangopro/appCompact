@@ -11,6 +11,7 @@ public class Usuario_estudiante {
     private int tipoUser ;
     private String correo;
     private String uid;
+    private String foto;
     private ArrayList<String> lstKeyAulas;
 
     public Usuario_estudiante(int tipoUser, String correo, String uid) {
@@ -19,10 +20,11 @@ public class Usuario_estudiante {
         this.uid = uid;
     }
 
-    public Usuario_estudiante(int tipoUser, String correo, String uid, ArrayList<String> lstKeyAulas) {
+    public Usuario_estudiante(int tipoUser, String correo, String uid, String foto,ArrayList<String> lstKeyAulas) {
         this.tipoUser = tipoUser;
         this.correo = correo;
         this.uid = uid;
+        this.foto = foto;
         this.lstKeyAulas = lstKeyAulas;
     }
 
@@ -46,5 +48,9 @@ public class Usuario_estudiante {
 
     public void setLstKeyAulas(ArrayList<String> lstKeyAulas) {
         this.lstKeyAulas = lstKeyAulas;
+    }
+
+    public String getFoto() {
+        return foto;
     }
 }

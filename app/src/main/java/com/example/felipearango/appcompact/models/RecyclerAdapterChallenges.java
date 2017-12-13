@@ -1,10 +1,6 @@
 package com.example.felipearango.appcompact.models;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +9,7 @@ import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
-import com.example.felipearango.appcompact.activitys.FragmentChooseChallenge;
-import com.example.felipearango.appcompact.activitys.FragmentVisualizarRetos;
+import com.example.felipearango.appcompact.Fragments.FragmentVisualizarRetos;
 import com.example.felipearango.appcompact.clases.Reto;
 
 import java.util.ArrayList;

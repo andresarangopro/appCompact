@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.models.ManejoUser;
-import com.example.felipearango.appcompact.models.Util;
+import com.example.felipearango.appcompact.util.ManejoUser;
+import com.example.felipearango.appcompact.util.Util;
 import com.google.firebase.auth.FirebaseAuth;
 
 

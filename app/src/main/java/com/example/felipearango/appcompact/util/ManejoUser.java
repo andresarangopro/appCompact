@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.models;
+package com.example.felipearango.appcompact.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
-import com.example.felipearango.appcompact.activitys.FragmentCreateClassroom;
+import com.example.felipearango.appcompact.Fragments.FragmentCreateClassroom;
 import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
@@ -193,6 +193,15 @@ public class ManejoUser {
              lstIntegrantes) {
             databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
         }
+    }
+
+    public Task<Void> addComentario(String reto, String idReto, String comentario, Object object){
+        return databaseReference.child(reto).child(idReto).child(comentario).push().setValue(object);
+    }
+
+    public DatabaseReference getUser(String idUser){
+        return  databaseReference.child("Users");
+
     }
 
 

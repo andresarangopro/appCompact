@@ -2,8 +2,6 @@ package com.example.felipearango.appcompact.activitys;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +11,8 @@ import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Aula;
-import com.example.felipearango.appcompact.models.ManejoUser;
-import com.example.felipearango.appcompact.models.RecyclerAdapterClassroom;
-import com.example.felipearango.appcompact.models.RecyclerAdapterRetos;
-import com.example.felipearango.appcompact.models.Util;
+import com.example.felipearango.appcompact.util.ManejoUser;
+import com.example.felipearango.appcompact.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
