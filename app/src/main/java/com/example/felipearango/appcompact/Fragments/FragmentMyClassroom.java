@@ -47,7 +47,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         mn.inicializatedFireBase();
         initListAulas();
         initComponents();
-        initXml();
+
         return view;
     }
 

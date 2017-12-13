@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.activitys;
+package com.example.felipearango.appcompact.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,13 @@ import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.AdapterMensajes;
 import com.example.felipearango.appcompact.clases.MensajeEnviar;
 import com.example.felipearango.appcompact.clases.MensajeRecibir;
-import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.util.ManejoUser;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -76,9 +80,7 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
     }
 
     private void listener() {
-
-
-        /*mn.databaseReference.child("salaChat").addChildEventListener(new ChildEventListener() {
+        mn.databaseReference.child("salaChat").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     MensajeRecibir m = dataSnapshot.getValue(MensajeRecibir.class);
@@ -112,7 +114,7 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.activitys;
+package com.example.felipearango.appcompact.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.models.ManejoUser;
-import com.example.felipearango.appcompact.models.Util;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
+import com.example.felipearango.appcompact.util.ManejoUser;
+import com.example.felipearango.appcompact.util.Util;
 
 
 public class FragmentCreateClassroom extends Fragment implements View.OnClickListener{

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context="com.example.felipearango.appcompact.activitys.FragmentMyClassroom">
+    tools:context="com.example.felipearango.appcompact.Fragments.FragmentMyClassroom">
 
 
     <android.support.v7.widget.RecyclerView

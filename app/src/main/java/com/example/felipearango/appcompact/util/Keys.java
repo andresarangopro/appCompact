@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.models;
+package com.example.felipearango.appcompact.util;
 
 /**
  * Created by Felipe Arango on 8/12/2017.

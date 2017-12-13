@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_weight="150"
-    tools:context="com.example.felipearango.appcompact.activitys.FragmentRetos">
+    tools:context="com.example.felipearango.appcompact.Fragments.FragmentRetos">
 
     <!-- TODO: Update blank fragment layout -->
     <include layout="@layout/content_visualizar_retos"/>

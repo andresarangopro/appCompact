@@ -8,10 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
-import com.example.felipearango.appcompact.activitys.Activity_Principal;
-import com.example.felipearango.appcompact.activitys.FragmentVisualizarRetos;
 import com.example.felipearango.appcompact.clases.Aula;
-import com.example.felipearango.appcompact.clases.Reto;
 
 import java.util.ArrayList;
 
