@@ -6,19 +6,40 @@
     android:weightSum="100"
     tools:context="com.example.felipearango.appcompact.activitys.FragmentMyClassroom">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:hint="Ingresa el codigo del aula"
-        android:background="@color/colorAccent"
-        android:id="@+id/txtKeyAula"/>
 
-    <Button
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_aula"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15"
-        android:text="Unirse a aula"
-        android:id="@+id/btnAggUserAula"/>
+        android:layout_weight="80">
+
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10">
+        <EditText
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:elevation="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:hint="Ingresa el codigo del aula"
+            android:textColorHint="@color/colorAccent"
+            android:background="@drawable/edit_text_claro_border"
+            android:id="@+id/txtKeyAula"/>
+
+        <Button
+            android:background="@drawable/circular_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="Unirse a aula"
+            android:id="@+id/btnAggUserAula"/>
+    </LinearLayout>
+
 
 </LinearLayout>

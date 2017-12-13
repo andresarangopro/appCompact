@@ -2,6 +2,8 @@ package com.example.felipearango.appcompact.activitys;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.models.ManejoUser;
+import com.example.felipearango.appcompact.models.RecyclerAdapterClassroom;
+import com.example.felipearango.appcompact.models.RecyclerAdapterRetos;
 import com.example.felipearango.appcompact.models.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +34,11 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
     ArrayList<Aula> lstAulaStudentLog = new ArrayList<>();
 
 
+    private RecyclerView mRecyclerDates;
+    private RecyclerAdapterClassroom mDates;
+    private LinearLayoutManager mLinearLayoutManager;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,10 +47,20 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         mn.inicializatedFireBase();
         initListAulas();
         initComponents();
-
+        initXml();
         return view;
     }
 
+    private void initXml(){
+        mRecyclerDates = view.findViewById(R.id.rv_aula) ;
+        mRecyclerDates.setHasFixedSize(true);
+
+        mLinearLayoutManager = new LinearLayoutManager(view.getContext());
+        mRecyclerDates.setLayoutManager(mLinearLayoutManager);
+
+        mDates = new RecyclerAdapterClassroom(view.getContext(), lstAulas);
+        mRecyclerDates.setAdapter( mDates);
+    }
 
 
     private void initComponents(){
