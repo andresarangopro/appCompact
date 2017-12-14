@@ -25,6 +25,7 @@ import com.example.felipearango.appcompact.Fragments.FragmentRetos;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.util.ManejoUser;
 
+
 public class Activity_Principal extends AppCompatActivity   implements  NavigationView.OnNavigationItemSelectedListener{
 
     Button btnPublicarReto, btnVisualizarReto, btnChat;
