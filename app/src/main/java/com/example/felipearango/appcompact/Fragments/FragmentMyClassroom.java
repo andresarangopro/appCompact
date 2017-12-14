@@ -1,4 +1,4 @@
-package com.example.felipearango.appcompact.activitys;
+package com.example.felipearango.appcompact.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,10 +13,9 @@ import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Aula;
-import com.example.felipearango.appcompact.models.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterClassroom;
-import com.example.felipearango.appcompact.models.RecyclerAdapterRetos;
-import com.example.felipearango.appcompact.models.Util;
+import com.example.felipearango.appcompact.util.ManejoUser;
+import com.example.felipearango.appcompact.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -40,8 +39,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragment_my_classroom, container, false);
         mn.inicializatedFireBase();
@@ -108,6 +106,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                         }
                     }
                 }
+                initXml();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

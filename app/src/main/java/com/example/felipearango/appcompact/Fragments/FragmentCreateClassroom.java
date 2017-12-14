@@ -25,25 +25,25 @@ public class FragmentCreateClassroom extends Fragment implements View.OnClickLis
     private ManejoUser mn = new ManejoUser();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_create_classroom, container, false);
         initComponents();
-
+        mn.inicializatedFireBase();
         btnPublicarAula.setOnClickListener(this);
         return view;
     }
 
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
+    public void onClick(View vista) {
+        switch (vista.getId()){
             case R.id.btnPublicarAula:{
                 if(validarCampos()) {
                     nombre_aula = txtNomAula.getText().toString();
                     descripcion_aula = txtDesAula.getText().toString();
                     key_aula = mn.databaseReference.push().getKey();
+                    //este metodo es para cambiar de fragment
                     Activity_Principal activity = (Activity_Principal) view.getContext();
                     FragmentClassroomCode fragmentClassroomCode = new FragmentClassroomCode();
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.FrFragments, fragmentClassroomCode).addToBackStack(null).commit();

@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
-import com.example.felipearango.appcompact.Fragments.FragmentCreateClassroom;
 import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
@@ -181,18 +180,22 @@ public class ManejoUser {
         });
     }
 
-    public void registrarAula(String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key){
-        Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes, FragmentCreateClassroom.key_aula);
-        insertar("Aulas", key, aula);
+    public void registrarAula(String nombre, String descripcion,final ArrayList<String> lstIntegrantes, final String key){
+        Aula aula = new Aula(firebaseUser.getEmail(), nombre, descripcion, lstIntegrantes,key);
+        insertar("Aulas", key, aula).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
 
-        //Agregar aula a profesor
-        databaseReference.child("Users").child(firebaseUser.getUid()).child("Aulas").push().setValue(key);
+                //Agregar aula a profesor
+                databaseReference.child("Users").child(firebaseUser.getUid()).child("Aulas").push().setValue(key);
 
-        //Agregar aula a estudiantes
-        for (String estudiante:
-             lstIntegrantes) {
-            databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
-        }
+                //Agregar aula a estudiantes
+                for (String estudiante:  lstIntegrantes) {
+                    databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
+                }
+            }
+        });
+
     }
 
     public Task<Void> addComentario(String reto, String idReto, String comentario, Object object){

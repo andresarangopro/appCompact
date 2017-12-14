@@ -60,6 +60,7 @@ public class RecyclerAdapterChallenges extends RecyclerView.Adapter<RecyclerAdap
                 Activity_Principal activity = (Activity_Principal)view.getContext();
                 FragmentVisualizarRetos fragmentVisualizarRetos = new FragmentVisualizarRetos();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.FrFragments, fragmentVisualizarRetos).addToBackStack(null).commit();
+
             }
         });
     }
