@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/AppTheme"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@mipmap/ic_user_menu"
+            android:icon="@mipmap/ic_profile"
             android:title="Perfil" />
         <item
             android:id="@+id/nav_publicar_retos"
-            android:icon="@mipmap/ic_challenges"
+            android:icon="@mipmap/ic_challenge"
             android:title="Publicar retos" />
         <item
             android:id="@+id/nav_mis_retos"
-            android:icon="@mipmap/ic_hour_glass"
+            android:icon="@mipmap/ic_challenges"
             android:title="Mis retos" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@mipmap/ic_chat"
             android:title="Chat" />
 
         <item
+            android:icon="@mipmap/ic_class_room"
             android:id="@+id/nav_aulas"
             android:title="Aulas"/>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@mipmap/ic_create_classroom"
+            android:title="¡Crea tú aula!" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@mipmap/ic_log_out"
+            android:title="Cerrar sesión" />
     </group>
 
-    <item android:title="Communicate">
+<!--    <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+
         </menu>
-    </item>
+    </item>-->
 </menu>
 
