@@ -23,7 +23,6 @@ public class RecyclerAdapterAddStudent extends RecyclerView.Adapter<RecyclerAdap
     private ArrayList<String> mDataSet;
     private Context mContext;
 
-
     public RecyclerAdapterAddStudent(Context context, ArrayList<String> mDataSet){
         this.mContext = context;
         this.mDataSet = mDataSet;
@@ -33,7 +32,6 @@ public class RecyclerAdapterAddStudent extends RecyclerView.Adapter<RecyclerAdap
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView et;
         private Button btnRemove;
-
 
         public ViewHolder(View v){
             super(v);

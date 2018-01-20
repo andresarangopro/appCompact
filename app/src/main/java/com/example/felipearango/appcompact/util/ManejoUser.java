@@ -76,7 +76,6 @@ public class ManejoUser {
                for (Entregable entregabl   :   listEntre) {
                    databaseReference.child(childDatabaseR).child(key).child("entregable").child(entregabl.getId()).setValue(entregabl);
                }
-
            }
        });
         ArrayList<Entregable> po = new ArrayList<>();
@@ -185,7 +184,6 @@ public class ManejoUser {
         insertar("Aulas", key, aula).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
                 //Agregar aula a profesor
                 databaseReference.child("Users").child(firebaseUser.getUid()).child("Aulas").push().setValue(key);
 

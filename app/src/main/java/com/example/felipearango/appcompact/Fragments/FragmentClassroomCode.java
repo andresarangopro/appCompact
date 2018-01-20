@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 
 public class FragmentClassroomCode extends Fragment implements View.OnClickListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
@@ -40,11 +38,8 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
     final ArrayList<String> lstEstudiantes = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_classroom_code, container, false);
-
-        // Inflate the layout for this fragment
         setRecycler();
         initComponents();
         initListStudents();
@@ -53,7 +48,7 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
     private void setRecycler(){
 
-        recycler = (RecyclerView) view.findViewById(R.id.rv_estudiantes);
+        recycler = view.findViewById(R.id.rv_estudiantes);
         recycler.setHasFixedSize(true);
 
         // Usar un administrador para LinearLayout
@@ -98,10 +93,9 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                 if(lstEstudiantes.isEmpty()) {
                     lstEstudiantes.add(" ");
                 }
-                    mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
-                            lstEstudiantes, FragmentCreateClassroom.key_aula);
-                    Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
-                //} else etEmail.setError("Por favor agregue minimo un estudiante");
+                mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
+                        lstEstudiantes, FragmentCreateClassroom.key_aula);
+                Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
