@@ -48,9 +48,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     private String [] tiposEntrega = {"Seleccione el formato de entrega", "video", "imagenes", "documentos"};
     private  String [] individualGrupo = {"Reto individual o en grupo?", "individual", "grupo"};
     private ManejoUser mu = new ManejoUser();
- //   private ArrayList<String> lstFechas = new ArrayList<>();
-   // private ArrayList<String> lstEntregas = new ArrayList<>();
-    //private ArrayList<Entregable> listEntregable = new ArrayList<>();
     private FirebaseAuth mAuth;
 
 
@@ -64,7 +61,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_retos, container, false);
-       // NavegacionActivity.toolbar.setTitle("");
         initXml();
         mu.inicializatedFireBase();
         return view;
@@ -74,18 +70,18 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     public void initXml(){
         mAuth = FirebaseAuth.getInstance();
 
-        txtNombre = (EditText) view.findViewById(R.id.txtNombreReto);
-        txtDescripcion = (EditText) view.findViewById(R.id.txtDescripcionReto);
-        txtFecha = (EditText) view.findViewById(R.id.etDates);
+        txtNombre = view.findViewById(R.id.txtNombreReto);
+        txtDescripcion = view.findViewById(R.id.txtDescripcionReto);
+        txtFecha = view.findViewById(R.id.etDates);
         txtFecha.setOnClickListener(this);
         addDate = view.findViewById(R.id.btnAdd);
         addDate.setOnClickListener(this);
-        txtNumIntegrante = (EditText) view.findViewById(R.id.txtNumIntegrante);
-        spnTipoReto =(Spinner) view.findViewById(R.id.spnTipoReto);
-        spnTipoEntrega =(Spinner) view.findViewById(R.id.spnTipoEntrega);
-        spnPrivacidad =(Spinner) view.findViewById(R.id.spnPrivacidad);
-        spnIndividualGrupo = (Spinner) view.findViewById(R.id.spnIndividualGrupo);
-        btnPublicarReto = (Button) view.findViewById(R.id.btnPublicarReto);
+        txtNumIntegrante = view.findViewById(R.id.txtNumIntegrante);
+        spnTipoReto = view.findViewById(R.id.spnTipoReto);
+        spnTipoEntrega = view.findViewById(R.id.spnTipoEntrega);
+        spnPrivacidad = view.findViewById(R.id.spnPrivacidad);
+        spnIndividualGrupo = view.findViewById(R.id.spnIndividualGrupo);
+        btnPublicarReto = view.findViewById(R.id.btnPublicarReto);
         btnPublicarReto.setOnClickListener(this);
         initSpinners();
 

@@ -24,10 +24,6 @@ import java.util.ArrayList;
 
 public class FragmentChooseChallenge extends Fragment {
 
-
-    private ArrayList<Entregable> mDataTest = new ArrayList<>();
-
-    private Bundle args;
     private ArrayList<Reto> mData = new ArrayList<>();
     private ManejoUser mn =new  ManejoUser();
     private FragmentTransaction transaction;
@@ -40,7 +36,7 @@ public class FragmentChooseChallenge extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_choose_challenge, container, false);
+        view = inflater.inflate(R.layout.fragment_choose_challenge, container, false);
         mn.inicializatedFireBase();
         transaction = getFragmentManager().beginTransaction();
         initXml();
@@ -48,15 +44,12 @@ public class FragmentChooseChallenge extends Fragment {
     }
 
     private void initXml(){
-        mRecyclerDates = (RecyclerView)view.findViewById(R.id.rv_desafíos) ;
+        mRecyclerDates = view.findViewById(R.id.rv_desafíos) ;
         mRecyclerDates.setHasFixedSize(true);
-
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
-
         mDates = new RecyclerAdapterRetos(view.getContext(), mData,transaction);
         mRecyclerDates.setAdapter( mDates);
-
         selectData();
     }
 
@@ -70,18 +63,13 @@ public class FragmentChooseChallenge extends Fragment {
                     Log.e("reto",reto.toString());
                     mData.add(reto);
                 }
-
                 mDates = new RecyclerAdapterRetos(view.getContext(), mData,transaction);
                 mRecyclerDates.setAdapter( mDates);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
-
-
-
 }

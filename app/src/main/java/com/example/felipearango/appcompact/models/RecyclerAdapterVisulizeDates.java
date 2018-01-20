@@ -56,6 +56,4 @@ public class RecyclerAdapterVisulizeDates extends RecyclerView.Adapter<RecyclerA
     public int getItemCount() {
         return mDataSet.size();
     }
-
-
 }

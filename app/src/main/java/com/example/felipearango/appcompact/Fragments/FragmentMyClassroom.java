@@ -83,9 +83,12 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                             //Se agrega el usuario al aula
                             mn.databaseReference.child("Aulas").child(aula.getKey()).setValue(aula);
                             Toast.makeText(getContext(), "Has sido agregado al aula", Toast.LENGTH_SHORT).show();
-                        } else
+                        } else{
                             Toast.makeText(getContext(), "Ya estas registrado en esta aula", Toast.LENGTH_SHORT).show();
-                    } else txtKeyAula.setError("Esta aula no existe");
+                        }
+                    } else{
+                        txtKeyAula.setError("Esta aula no existe");
+                    }
                 }
         }
 

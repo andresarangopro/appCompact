@@ -21,13 +21,12 @@ import static com.example.felipearango.appcompact.util.Util.usuario_profesor;
 
 public class Activity_Register extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnRegistrar;
-    EditText txtEmail, txtPass, txtConfirPass;
-    Spinner spnTipoUser;
-    String [] tipos = {"Tipo de usuario", "Estudiante", "Profesor", "Empresa"};
-    int tipoUser;
+    private Button btnRegistrar;
+    private EditText txtEmail, txtPass, txtConfirPass;
+    private Spinner spnTipoUser;
+    private final String[] tipos = {"Tipo de usuario", "Estudiante", "Profesor", "Empresa"};
+    private int tipoUser;
     private ManejoUser mn = new ManejoUser();
-    public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +38,11 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
 
 
     private void iniciar(){
-        btnRegistrar = (Button) findViewById(R.id.btnRegisterUser);
-        txtEmail = (EditText) findViewById(R.id.txtRegistroEmail);
-        txtPass = (EditText) findViewById(R.id.txtRegistroPass);
-        txtConfirPass = (EditText) findViewById(R.id.txtRegistroConfirPass);
-        spnTipoUser = (Spinner) findViewById(R.id.spnTipoUser);
+        btnRegistrar = findViewById(R.id.btnRegisterUser);
+        txtEmail = findViewById(R.id.txtRegistroEmail);
+        txtPass = findViewById(R.id.txtRegistroPass);
+        txtConfirPass = findViewById(R.id.txtRegistroConfirPass);
+        spnTipoUser = findViewById(R.id.spnTipoUser);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tipos);
         spnTipoUser.setAdapter(adapter);
@@ -78,14 +77,13 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnRegisterUser:{
-               // Toast.makeText(this,Util.geteTxt(txtEmail)+"- "+Util.geteTxt(txtPass), Toast.LENGTH_LONG ).show();
-              if(validarCampos()){
-                  if(validarPass()){
-                   mn.registrarUser(Util.geteTxt(txtEmail),Util.geteTxt(txtPass), Activity_Register.this, tipoUser);
-                 }else{
-                      txtConfirPass.setText("Las contraseñas no coinciden");
-                  }
-              }
+                if(validarCampos()){
+                    if(validarPass()){
+                        mn.registrarUser(Util.geteTxt(txtEmail),Util.geteTxt(txtPass), Activity_Register.this, tipoUser);
+                    }else{
+                        txtConfirPass.setText("Las contraseñas no coinciden");
+                    }
+                }
                 break;
             }
         }
@@ -99,6 +97,4 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
     private boolean validarPass(){
         return Util.geteTxt(txtPass).equals(Util.geteTxt(txtConfirPass));
     }
-
-
 }
