@@ -20,8 +20,6 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
     private EditText txtEmail;
     private EditText txtPassword;
     private TextView tvRegistrarse;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener listener;
     private ManejoUser mn = new ManejoUser();
     public static boolean calledAlready = false;
     public static int TIPO_USUARIO = 0;
@@ -43,10 +41,10 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initComponents(){
-        btnIngresar = (Button) findViewById(R.id.btnIngresar);
-        txtEmail = (EditText) findViewById(R.id.txtEmail);
-        txtPassword = (EditText) findViewById(R.id.txtPassword);
-        tvRegistrarse = (TextView) findViewById(R.id.tvRegistrate);
+        btnIngresar = findViewById(R.id.btnIngresar);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtPassword);
+        tvRegistrarse = findViewById(R.id.tvRegistrate);
         btnIngresar.setOnClickListener(this);
         tvRegistrarse.setOnClickListener(this);
     }
@@ -57,9 +55,7 @@ public class Activity_Login extends AppCompatActivity implements View.OnClickLis
             case R.id.btnIngresar:{
                 if(!Util.emptyCampMSG(txtEmail, "Por favor ingrese un correo") &&
                         !Util.emptyCampMSG(txtEmail, "Por favor ingrese una contraseña")) {
-
                     mn.ingresar(txtEmail.getText().toString(), txtPassword.getText().toString(), Activity_Login.this);
-
                 }
                 break;
             }

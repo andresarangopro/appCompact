@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="15dp"
-    android:layout_weight="100">
+    android:layout_weight="200">
 
     <TextView
         android:layout_width="match_parent"
@@ -86,12 +86,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="80">
+        android:layout_weight="50">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_fechas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="5dp"
+            android:layout_weight="30"
             android:paddingLeft="15dp"
             android:paddingStart="15dp">
 
@@ -183,10 +185,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_coment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:paddingLeft="15dp"
-            android:paddingStart="15dp">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>

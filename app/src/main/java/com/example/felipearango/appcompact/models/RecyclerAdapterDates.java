@@ -63,7 +63,6 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
                 notifyItemRangeChanged(position, mDataSet.size());
             }
         });
-
     }
 
     @Override

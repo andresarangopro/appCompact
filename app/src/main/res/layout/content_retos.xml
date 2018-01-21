@@ -5,31 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_weight="150"
-
     tools:context="com.example.felipearango.appcompact.Fragments.FragmentRetos">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="15"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Regístrata tu reto!"
+        android:text="Regístra tu reto!"
         android:textColor="@color/colorYellow"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <!-- android:drawableStart="@mipmap/ic_user"-->
     <EditText
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_weight="15"
         android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
-        android:hint="Nombre reto"
+        android:hint="Nombre"
         android:paddingLeft="5dp"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
@@ -43,7 +40,7 @@
         android:layout_weight="15"
         android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
-        android:hint="descripcion reto"
+        android:hint="Descripción"
         android:paddingLeft="5dp"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
@@ -60,28 +57,23 @@
         android:drawableLeft="@mipmap/ic_chooser"
         android:drawableStart="@mipmap/ic_chooser"
         android:textColor="@color/colorAccent">
-
     </Spinner>
 
     <LinearLayout
         android:background="@drawable/panel_with_border"
-
         android:layout_marginTop="25dp"
         android:orientation="horizontal"
         android:weightSum="10"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="100dp">
-
         <LinearLayout
             android:weightSum="2"
             android:layout_weight="7"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent">
-
             <EditText
-
                 android:layout_margin="10dp"
                 android:id="@+id/etDates"
                 android:layout_width="match_parent"
@@ -93,7 +85,6 @@
                 android:paddingLeft="15dp"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent" />
-
             <Spinner
                 android:layout_margin="10dp"
                 android:paddingLeft="15dp"
@@ -107,7 +98,6 @@
                 android:textColor="@color/colorAccent">
             </Spinner>
         </LinearLayout>
-
         <Button
             android:id="@+id/btnAdd"
             android:background="@drawable/circular_button"
@@ -146,15 +136,11 @@
         android:layout_weight="15"
         android:background="@drawable/edit_text_style_claro"
         android:drawablePadding="10dp"
-
-        android:hint="integrante"
+        android:hint="Integrante"
         android:textColor="@color/colorAccent"
         android:paddingLeft="15dp"
-
         android:textColorHint="@color/colorAccent"
         android:id="@+id/txtNumIntegrante"/>
-
-
     <Spinner
         android:id="@+id/spnPrivacidad"
         android:layout_width="match_parent"
@@ -166,9 +152,7 @@
         android:drawableLeft="@mipmap/ic_chooser"
         android:drawableStart="@mipmap/ic_chooser"
         android:textColor="@color/colorAccent">
-
     </Spinner>
-
     <Button
         android:id="@+id/btnPublicarReto"
         android:textSize="20dp"
@@ -180,5 +164,4 @@
         android:layout_weight="15"
         android:background="@color/colorAccentDark"
         android:text="Publicar reto" />
-
 </LinearLayout>
