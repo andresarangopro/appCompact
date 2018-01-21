@@ -1,5 +1,7 @@
 package com.example.felipearango.appcompact.Fragments;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
+import com.example.felipearango.appcompact.util.Keys;
 import com.example.felipearango.appcompact.util.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterAddStudent;
 import com.google.firebase.database.DataSnapshot;
@@ -96,6 +99,10 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                 mn.registrarAula(FragmentCreateClassroom.nombre_aula, FragmentCreateClassroom.descripcion_aula,
                         lstEstudiantes, FragmentCreateClassroom.key_aula);
                 Toast.makeText(getContext(), "Aula agregada correctamente", Toast.LENGTH_SHORT).show();
+                Fragment fragment = new FragmentMyClassroom();
+                android.support.v4.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.FrFragments, fragment);
+                transaction.commit();
                 break;
             }
         }
@@ -121,7 +128,6 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
         });
 
     }
-
 
     /**
      * Metodo para validar que el usuario que se va agregar al RecyclerView este registrado en la BD

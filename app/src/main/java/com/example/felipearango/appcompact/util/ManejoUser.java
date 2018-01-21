@@ -68,8 +68,7 @@ public class ManejoUser {
     }
 
     public ArrayList<Entregable> insertarEntregable(final String childDatabaseR, final String key, Object object, final ArrayList<Entregable> listEntre) {
-
-       databaseReference.child(childDatabaseR).child(key).setValue(object).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.child(childDatabaseR).child(key).setValue(object).addOnCompleteListener(new OnCompleteListener<Void>() {
            @Override
            public void onComplete(@NonNull Task<Void> task) {
                Log.e("Tam", listEntre.size()+"");
@@ -77,10 +76,9 @@ public class ManejoUser {
                    databaseReference.child(childDatabaseR).child(key).child("entregable").child(entregabl.getId()).setValue(entregabl);
                }
            }
-       });
+        });
         ArrayList<Entregable> po = new ArrayList<>();
-       return po;
-
+        return po;
     }
 
     public void ingresar(String email, String password, final Context context) {
@@ -89,8 +87,6 @@ public class ManejoUser {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     account(context);
-                    Toast.makeText(context, "Correcto", Toast.LENGTH_LONG).show();
-
                 }else{
                     Toast.makeText(context, "Por favor verifique su usuario y contraseña", Toast.LENGTH_LONG).show();
                 }
@@ -98,7 +94,7 @@ public class ManejoUser {
         });
     }
 
-   public void inicializatedFireBase(){
+    public void inicializatedFireBase(){
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -186,14 +182,12 @@ public class ManejoUser {
             public void onComplete(@NonNull Task<Void> task) {
                 //Agregar aula a profesor
                 databaseReference.child("Users").child(firebaseUser.getUid()).child("Aulas").push().setValue(key);
-
                 //Agregar aula a estudiantes
                 for (String estudiante:  lstIntegrantes) {
                     databaseReference.child("Users").child(estudiante).child("Aulas").push().setValue(key);
                 }
             }
         });
-
     }
 
     public Task<Void> addComentario(String reto, String idReto, String comentario, Object object){
@@ -204,6 +198,4 @@ public class ManejoUser {
         return  databaseReference.child("Users");
 
     }
-
-
 }

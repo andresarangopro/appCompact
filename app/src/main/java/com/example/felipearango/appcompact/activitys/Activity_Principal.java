@@ -46,6 +46,11 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
     }
 
     @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity__principal, menu);
