@@ -22,7 +22,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-
         app:headerLayout="@layout/nav_header_activity__principal"
         app:menu="@menu/activity__principal_drawer" />
     <!--   android:background="@drawable/black_green"-->

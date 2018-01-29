@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.felipearango.appcompact.Fragments.FragmentChat"
-    android:padding="5sp"
-    android:orientation="vertical"
-    android:background="@color/colorAccent">
+    android:orientation="vertical">
 
     <LinearLayout
+        android:elevation="10dp"
+        android:background="@color/colorIcons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -27,6 +27,7 @@
             android:layout_gravity="center"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:padding="5sp"
         android:id="@+id/rvMensajes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,21 +37,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/btnEnviarFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_menu_gallery"
-            android:layout_gravity="center"
-            />
-        <EditText
-            android:id="@+id/txtMensaje"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Escribe un mensaje"
-            android:layout_weight="1"/>
-
+        <LinearLayout
+            android:layout_weight="1"
+            android:background="@drawable/edittext_green"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/btnEnviarFoto"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:background="@android:drawable/ic_menu_gallery"
+                android:layout_gravity="center" />
+            <EditText
+                android:textColor="@color/colorAccent"
+                android:id="@+id/txtMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Escribe un mensaje"
+                android:layout_weight="1"/>
+        </LinearLayout>
         <Button
+            android:layout_margin="10dp"
+            android:textColorHighlight="@color/colorAccent"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/black_btn"
             android:id="@+id/btnEnviar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

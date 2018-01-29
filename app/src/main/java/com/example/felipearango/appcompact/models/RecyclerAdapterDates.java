@@ -41,7 +41,6 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
             etType.setFocusable(false);
             btnRemove = v.findViewById(R.id.btnAdd);
             btnRemove.setText("-");
-
         }
     }
 
@@ -64,13 +63,10 @@ public class RecyclerAdapterDates extends RecyclerView.Adapter<RecyclerAdapterDa
                 notifyItemRangeChanged(position, mDataSet.size());
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
         return mDataSet.size();
     }
-
-
 }

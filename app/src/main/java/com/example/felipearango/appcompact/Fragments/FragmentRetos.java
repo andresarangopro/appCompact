@@ -43,14 +43,11 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     private EditText txtNombre, txtDescripcion, txtFecha, txtNumIntegrante;
     private Spinner spnTipoReto, spnPrivacidad, spnTipoEntrega, spnIndividualGrupo;
     private Button btnPublicarReto, addDate;
-    private String [] tiposReto = {"Seleccione el tipo de reto", "elite", "aula", "rally"};
-    private String [] tiposPrivacidad = {"Seleccione la privacidad del reto", "publico", "privado"};
-    private String [] tiposEntrega = {"Seleccione el formato de entrega", "video", "imagenes", "documentos"};
-    private  String [] individualGrupo = {"Reto individual o en grupo?", "individual", "grupo"};
+    private String [] tiposReto = {"Tipo de reto", "Elite", "Aula", "Rally"};
+    private String [] tiposPrivacidad = {"Privacidad del reto", "Público", "Privado"};
+    private String [] tiposEntrega = {"Formato de entrega", "Video", "Imagenes", "Documentos"};
+    private  String [] individualGrupo = {"¿Reto individual o grupal?", "Individual", "Grupo"};
     private ManejoUser mu = new ManejoUser();
- //   private ArrayList<String> lstFechas = new ArrayList<>();
-   // private ArrayList<String> lstEntregas = new ArrayList<>();
-    //private ArrayList<Entregable> listEntregable = new ArrayList<>();
     private FirebaseAuth mAuth;
 
 
@@ -64,7 +61,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_retos, container, false);
-       // NavegacionActivity.toolbar.setTitle("");
         initXml();
         mu.inicializatedFireBase();
         return view;
@@ -74,29 +70,26 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     public void initXml(){
         mAuth = FirebaseAuth.getInstance();
 
-        txtNombre = (EditText) view.findViewById(R.id.txtNombreReto);
-        txtDescripcion = (EditText) view.findViewById(R.id.txtDescripcionReto);
-        txtFecha = (EditText) view.findViewById(R.id.etDates);
+        txtNombre = view.findViewById(R.id.txtNombreReto);
+        txtDescripcion = view.findViewById(R.id.txtDescripcionReto);
+        txtFecha = view.findViewById(R.id.etDates);
         txtFecha.setOnClickListener(this);
         addDate = view.findViewById(R.id.btnAdd);
         addDate.setOnClickListener(this);
-        txtNumIntegrante = (EditText) view.findViewById(R.id.txtNumIntegrante);
-        spnTipoReto =(Spinner) view.findViewById(R.id.spnTipoReto);
-        spnTipoEntrega =(Spinner) view.findViewById(R.id.spnTipoEntrega);
-        spnPrivacidad =(Spinner) view.findViewById(R.id.spnPrivacidad);
-        spnIndividualGrupo = (Spinner) view.findViewById(R.id.spnIndividualGrupo);
-        btnPublicarReto = (Button) view.findViewById(R.id.btnPublicarReto);
+        txtNumIntegrante = view.findViewById(R.id.txtNumIntegrante);
+        spnTipoReto = view.findViewById(R.id.spnTipoReto);
+        spnTipoEntrega = view.findViewById(R.id.spnTipoEntrega);
+        spnPrivacidad = view.findViewById(R.id.spnPrivacidad);
+        spnIndividualGrupo = view.findViewById(R.id.spnIndividualGrupo);
+        btnPublicarReto = view.findViewById(R.id.btnPublicarReto);
         btnPublicarReto.setOnClickListener(this);
         initSpinners();
-
         //Recycler -----------------------------
-
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates = view.findViewById(R.id.rv_fechas);
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
         mDates = new RecyclerAdapterDates(view.getContext(), listEntregable);
         mRecyclerDates.setAdapter(mDates);
-
         //Calendar -------------------------------------------
     }
 
@@ -134,14 +127,7 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
                             txtDescripcion.getText().toString(), spnTipoReto.getSelectedItem().toString(),
                             txtNumIntegrante.getText().toString(), spnPrivacidad.getSelectedItem().toString(),
                             spnIndividualGrupo.getSelectedItem().toString(),idReto);
-
-
-
                     listEntregable = mu.insertarEntregable("Retos", idReto, reto, listEntregable);
-
-                   // listEntregable.clear();
-                   // lstEntregas.clear();
-                  //  lstFechas.clear();
                     Toast.makeText(view.getContext(), "Reto publicado", Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -163,7 +149,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
                     mDates.notifyDataSetChanged();
                     mRecyclerDates.scrollToPosition(position);
                     Toast.makeText(view.getContext(), "Agregada entrega", Toast.LENGTH_SHORT).show();
-                    //  txtFecha.setText("");
                     break;
                 }
             }
@@ -186,7 +171,6 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class RecyclerAdapterComentarios extends RecyclerView.Adapter<RecyclerAdapterComentarios.RecyclerAdapterHolder>{
 
     private ArrayList<DatosC> listRetos;
-
     private Context mContext;
     private  FragmentTransaction transaction;
 
@@ -29,21 +28,18 @@ public class RecyclerAdapterComentarios extends RecyclerView.Adapter<RecyclerAda
         public TextView nombre;
         public TextView comentario;
         public ImageView iVPerfil;
-        private View thisView;
 
         public RecyclerAdapterHolder(View v) {
             super(v);
-            nombre = (TextView) itemView.findViewById(R.id.tvNameC);
-            comentario = (TextView) itemView.findViewById(R.id.tvComent);
-            iVPerfil = (ImageView) itemView.findViewById(R.id.imVPerfilC);
-            thisView = itemView;
+            nombre = itemView.findViewById(R.id.tvNameC);
+            comentario = itemView.findViewById(R.id.tvComent);
+            iVPerfil = itemView.findViewById(R.id.imVPerfilC);
         }
     }
 
     public RecyclerAdapterComentarios(Context context, ArrayList<DatosC> comentario){
         this.listRetos = comentario;
         this.mContext = context;
-
     }
 
     @Override
@@ -57,18 +53,6 @@ public class RecyclerAdapterComentarios extends RecyclerView.Adapter<RecyclerAda
     public void onBindViewHolder(RecyclerAdapterHolder holder, final int position) {
         holder.nombre.setText(listRetos.get(position).getName());
         holder.comentario.setText(listRetos.get(position).getComentario());
-       // holder.iVPerfil.setText(listRetos.get(position).getIndividualOGrupo());
-       /* holder.thisView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new FragmentVisualizarRetos();
-                args.putString(Keys.idReto,listRetos.get(position).getId());
-                fragment.setArguments(args);
-                transaction.replace(R.id.FrFragments, fragment);
-                transaction.commit();
-            }
-        });*/
-
     }
 
     @Override

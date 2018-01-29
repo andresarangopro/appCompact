@@ -36,9 +36,9 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
 
         public RecyclerAdapterHolder(View v) {
             super(v);
-            nombre = (TextView) itemView.findViewById(R.id.tvNombreReto);
-            privacidad = (TextView) itemView.findViewById(R.id.tvPrivacidad);
-            tamaño = (TextView) itemView.findViewById(R.id.tvIndividualGrupo);
+            nombre = itemView.findViewById(R.id.tvNombreReto);
+            privacidad = itemView.findViewById(R.id.tvPrivacidad);
+            tamaño = itemView.findViewById(R.id.tvIndividualGrupo);
             thisView = itemView;
         }
     }
@@ -47,7 +47,6 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
         this.listRetos = retos;
         this.mContext = context;
         this.transaction = transaction;
-
     }
 
     @Override

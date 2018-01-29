@@ -49,7 +49,6 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
     private Button btnEnviar;
     private ImageButton btnEnviarFoto;
     private AdapterMensajes adapter;
-
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private FirebaseStorage storage;

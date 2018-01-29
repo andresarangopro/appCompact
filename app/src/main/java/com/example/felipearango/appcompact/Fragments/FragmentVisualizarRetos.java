@@ -71,43 +71,28 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
     }
 
     private void initXml(){
-       mRecyclerDates = (RecyclerView)view.findViewById(R.id.rv_fechas) ;
+        mRecyclerDates = view.findViewById(R.id.rv_fechas) ;
         mRecyclerDates.setHasFixedSize(true);
-
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
-
         mDates = new  RecyclerAdapterDates(view.getContext(), mDataTest);
         mRecyclerDates.setAdapter( mDates);
-
         listComents.add(new DatosC("Nombre","Comentario","img"));
-
-        //////////////////////////
-        ///
-        ////////////////////////
-
         mRecyclerComent= (RecyclerView)view.findViewById(R.id.rv_coment) ;
         mRecyclerComent.setHasFixedSize(true);
-
         mLinearLayoutMan = new LinearLayoutManager(view.getContext());
         mRecyclerComent.setLayoutManager(mLinearLayoutMan);
-
         mComent = new RecyclerAdapterComentarios(view.getContext(), listComents);
         mRecyclerComent.setAdapter( mComent);
-
-
         tvEncargado =  view.findViewById(R.id.tvEmailEncargado);
         tvNombre =  view.findViewById(R.id.tvNombreReto);
         tvDescripcion =  view.findViewById(R.id.tvDescripcionReto);
         tvTipo =  view.findViewById(R.id.tvTipoReto);
-        /*tvFechas =  view.findViewById(R.id.tvFechas);
-        tvEntregas = view.findViewById(R.id.tvEntregas);*/
         tvIndividualGrupo = view.findViewById(R.id.tvIndividualGrupo);
         tvNumIntegrantes = view.findViewById(R.id.tvNumIntegrantes);
         tvPrivacidad =  view.findViewById(R.id.tvPrivacidad);
         etComentario = view.findViewById(R.id.etComentar);
-
-        iVsendComentario = (ImageView) view.findViewById(R.id.iVsendComentario);
+        iVsendComentario = view.findViewById(R.id.iVsendComentario);
         iVsendComentario.setOnClickListener(this);
     }
 
@@ -120,7 +105,6 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
         tvIndividualGrupo.setText(reto.getIndividualOGrupo());
         tvNumIntegrantes.setText(reto.getNumIntegrante());
         tvPrivacidad.setText(reto.getPrivacidad());
-       // mData = setArray(reto.getFechasEntrega(), reto.getTipoEntrega());
     }
 
     private void selectEntregables(){
@@ -158,10 +142,12 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Usuario_estudiante ue = dataSnapshot.child(comentario.getUidUser()).getValue(Usuario_estudiante.class);
-                        DatosC datosAdapterComent = new DatosC(ue.getCorreo(),comentario.getComentario(),ue.getFoto());
-                        listComents.add(datosAdapterComent);
-                        mComent = new RecyclerAdapterComentarios(view.getContext(), listComents);
-                        mRecyclerComent.setAdapter( mComent);
+                        if(ue != null){
+                            DatosC datosAdapterComent = new DatosC(ue.getCorreo(),comentario.getComentario(),ue.getFoto());
+                            listComents.add(datosAdapterComent);
+                            mComent = new RecyclerAdapterComentarios(view.getContext(), listComents);
+                            mRecyclerComent.setAdapter( mComent);
+                        }
                     }
 
                     @Override

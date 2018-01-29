@@ -21,7 +21,6 @@ public class RecyclerAdapterClassroom extends RecyclerView.Adapter<RecyclerAdapt
     private ArrayList<Aula> mDataSet;
     private Context mContext;
 
-
     public RecyclerAdapterClassroom(Context context, ArrayList<Aula> mDataSet){
         this.mContext = context;
         this.mDataSet = mDataSet;
@@ -29,14 +28,12 @@ public class RecyclerAdapterClassroom extends RecyclerView.Adapter<RecyclerAdapt
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvNombre, tvProfesor, tvIntegrantes;
-        private View view;
 
         public ViewHolder(View v){
             super(v);
             tvNombre = v.findViewById(R.id.tvNombreAula);
             tvProfesor = v.findViewById(R.id.tvProfesorEncargado);
             tvIntegrantes = v.findViewById(R.id.tvNumeroIntegrantes);
-            this.view = v;
         }
     }
 

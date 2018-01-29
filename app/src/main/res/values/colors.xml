@@ -12,6 +12,7 @@
     <color name="colorYellow">#FFBF00</color>
     <color name="colorYellowIcons">#FF7600</color>
     <color name="organeFaded">#80FF7600</color>
+    <color name="greenFadedClear">#8051C200</color>
     <color name="greenFaded">#4051C200</color>
     <color name="redFaded">#62ff0000</color>
 </resources>
