@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tvNombreAula"
             android:textSize="20sp"
-            android:text="Este ese el nombre del reto"
+            android:text="Este ese el nombre del aula"
             android:textStyle="bold"
             android:layout_weight="1"
             android:hint="Este ese el nombre del reto"
@@ -31,7 +31,7 @@
             android:textColor="@color/colorAccentDark"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:text="Nombre aula"
+            android:text="Nombre profesor"
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -43,7 +43,7 @@
             android:textStyle="bold"
             android:gravity="center_horizontal|center_vertical"
             android:layout_weight="1"
-            android:text="Código de aula"
+            android:text="Numero de integrantes"
             android:textColor="@color/colorAccentDark"
             android:textSize="15sp" />
     </LinearLayout>

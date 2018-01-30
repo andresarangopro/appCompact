@@ -1,5 +1,7 @@
 package com.example.felipearango.appcompact.clases;
 
+import java.util.ArrayList;
+
 /**
  * Created by Usuario_estudiante on 29/11/2017.
  */
@@ -57,6 +59,8 @@ public class Reto {
 
     private String id;
 
+    private ArrayList<String> lstIntegrantes;
+
     ///////////////////////////////////////////////
     //Constructor por defecto
     ///////////////////////////////////////////////
@@ -68,7 +72,7 @@ public class Reto {
     //Constructor con parametros
     ///////////////////////////////////////////////
 
-    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto, String numIntegrante, String privacidad, String individualOGrupo, String id) {
+    /*public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto, String numIntegrante, String privacidad, String individualOGrupo, String id) {
         this.emailResponsable = emailResponsable;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -77,8 +81,19 @@ public class Reto {
         this.privacidad = privacidad;
         this.individualOGrupo = individualOGrupo;
         this.id = id;
-    }
+    }*/
 
+    public Reto(String emailResponsable, String nombre, String descripcion, String tipoReto, String numIntegrante, String privacidad, String individualOGrupo, String id, ArrayList<String> lstIntegrantes) {
+        this.emailResponsable = emailResponsable;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipoReto = tipoReto;
+        this.numIntegrante = numIntegrante;
+        this.privacidad = privacidad;
+        this.individualOGrupo = individualOGrupo;
+        this.id = id;
+        this.lstIntegrantes = lstIntegrantes;
+    }
 
     ///////////////////////////////////////////////
     //Getters & Setters
@@ -147,6 +162,14 @@ public class Reto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public ArrayList<String> getLstIntegrantes() {
+        return lstIntegrantes;
+    }
+
+    public void setLstIntegrantes(ArrayList<String> lstIntegrantes) {
+        this.lstIntegrantes = lstIntegrantes;
     }
 
     public String toString(){

@@ -18,6 +18,9 @@
             android:icon="@mipmap/ic_challenges"
             android:title="Mis retos" />
         <item
+            android:id="@+id/nav_retos"
+            android:title="Retos" />
+        <item
             android:id="@+id/nav_chat"
             android:icon="@mipmap/ic_chat"
             android:title="Chat" />
