@@ -46,7 +46,8 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     private String [] tiposReto = {"Tipo de reto", "Elite", "Aula", "Rally"};
     private String [] tiposPrivacidad = {"Privacidad del reto", "Público", "Privado"};
     private String [] tiposEntrega = {"Formato de entrega", "Video", "Imagenes", "Documentos"};
-    private  String [] individualGrupo = {"¿Reto individual o grupal?", "Individual", "Grupo"};
+    private String [] individualGrupo = {"¿Reto individual o grupal?", "Individual", "Grupo"};
+    private ArrayList<String> lstIntegrantes = new ArrayList<>();
     private ManejoUser mu = new ManejoUser();
     private FirebaseAuth mAuth;
 
@@ -123,10 +124,11 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
                     FirebaseUser user = mAuth.getCurrentUser();
                     Log.e("Tam", listEntregable.size()+"");
                     final String idReto = mu.databaseReference.push().getKey();
+                    lstIntegrantes.add(" ");
                     Reto reto = new Reto(user.getEmail(), txtNombre.getText().toString(),
                             txtDescripcion.getText().toString(), spnTipoReto.getSelectedItem().toString(),
                             txtNumIntegrante.getText().toString(), spnPrivacidad.getSelectedItem().toString(),
-                            spnIndividualGrupo.getSelectedItem().toString(),idReto);
+                            spnIndividualGrupo.getSelectedItem().toString(),idReto, lstIntegrantes);
                     listEntregable = mu.insertarEntregable("Retos", idReto, reto, listEntregable);
                     Toast.makeText(view.getContext(), "Reto publicado", Toast.LENGTH_LONG).show();
                 }

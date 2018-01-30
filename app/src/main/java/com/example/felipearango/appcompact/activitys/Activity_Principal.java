@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.felipearango.appcompact.Fragments.FragmentChat;
@@ -28,6 +27,7 @@ import com.example.felipearango.appcompact.util.ManejoUser;
 public class Activity_Principal extends AppCompatActivity   implements  NavigationView.OnNavigationItemSelectedListener{
 
     ManejoUser mn = new ManejoUser();
+    public static final String TYPE_CHALLENGE = "TCHALLENGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,17 @@ public class Activity_Principal extends AppCompatActivity   implements  Navigati
                 break;
             }
             case R.id.nav_mis_retos:{
+                Bundle bundle = new Bundle();
+                bundle.putInt(TYPE_CHALLENGE, 0);
                 fragment = new FragmentChooseChallenge();
+                fragment.setArguments(bundle);
+                break;
+            }
+            case R.id.nav_retos:{
+                Bundle bundle = new Bundle();
+                bundle.putInt(TYPE_CHALLENGE, 1);
+                fragment = new FragmentChooseChallenge();
+                fragment.setArguments(bundle);
                 break;
             }
             case R.id.nav_chat:{
