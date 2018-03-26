@@ -1,6 +1,8 @@
 package com.example.felipearango.appcompact.util;
 
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by Felipe Arango on 29/11/2017.
@@ -23,6 +25,11 @@ public class Util {
 
     public static String geteTxt(EditText etText){
         return !etText.getText().toString().equals("")? etText.getText().toString(): "";
+    }
+
+    public static boolean spinerUser(Spinner sp , int valor, String mng){
+        if(valor < 0)((TextView)sp.getChildAt(0)).setError(mng);
+        return valor > 0;
     }
 
 }

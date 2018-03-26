@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,15 +102,16 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                 for (DataSnapshot aula:dataSnapshot.getChildren()) {
                     Aula a = aula.getValue(Aula.class);
                     lstAulas.add(a);
+                    Log.e("aula", a.getKey()+ " ");
                     if(a != null && !a.getLstIntegrantes().get(0).equals(" ")) {
-                        for (String student :
-                                a.getLstIntegrantes()) {
+                        for (String student : a.getLstIntegrantes()) {
+                            Log.e("stu", student+ " ");
                             if (student.equals(mn.firebaseUser.getEmail()))
                                 lstAulaStudentLog.add(a);
                         }
                     }
                 }
-                initXml();
+             //  initXml();vb
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -119,8 +121,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
     }
 
     private Aula findAula(String key){
-        for (Aula aula:
-             lstAulas) {
+        for (Aula aula: lstAulas) {
             if(aula.getKey().equals(key)){
                 return aula;
             }

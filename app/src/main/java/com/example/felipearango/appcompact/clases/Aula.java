@@ -16,8 +16,7 @@ public class Aula {
     private String key;
 
 
-    public Aula() {
-    }
+    public Aula() { }
 
     public Aula(String profesor, String nombre, String descripcion, ArrayList<String> lstIntegrantes, String key) {
         this.profesor = profesor;

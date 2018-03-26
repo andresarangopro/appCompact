@@ -12,8 +12,6 @@ import android.widget.Spinner;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.util.ManejoUser;
 import com.example.felipearango.appcompact.util.Util;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.felipearango.appcompact.util.Util.usuario_empresa;
 import static com.example.felipearango.appcompact.util.Util.usuario_estudiante;
@@ -91,7 +89,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
 
     private boolean validarCampos(){
         return !Util.emptyCampMSG(txtEmail,"Ingrese Correo") && !Util.emptyCampMSG(txtPass,"Ingrese contraseña") &&
-                !Util.emptyCampMSG(txtConfirPass, "Ingrese confirmación contraseña");
+                !Util.emptyCampMSG(txtConfirPass, "Ingrese confirmación contraseña") && Util.spinerUser(spnTipoUser,tipoUser,"Usuario Invalido");
     }
 
     private boolean validarPass(){

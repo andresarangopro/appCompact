@@ -89,8 +89,7 @@ public class FragmentChooseChallenge extends Fragment {
     }
 
     private boolean existInAula(ArrayList<String> lst){
-        for (String user:
-             lst) {
+        for (String user:lst) {
             if(mn.firebaseUser.getEmail().equals(user)) return true;
         }
         return false;
