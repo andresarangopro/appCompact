@@ -38,9 +38,9 @@ public class FragmentChooseChallenge extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_choose_challenge, container, false);
+        Activity_Principal.toolbar.setTitle("Mis Retos");
         mn.inicializatedFireBase();
         transaction = getFragmentManager().beginTransaction();
-
         if(getArguments() != null){
             tChallenge = getArguments().getInt(Activity_Principal.TYPE_CHALLENGE);
         }
@@ -74,7 +74,7 @@ public class FragmentChooseChallenge extends Fragment {
                     for (DataSnapshot retos : dataSnapshot.getChildren()) {
                         Reto reto = retos.getValue(Reto.class);
                         Log.e("reto", reto.toString());
-                        if(existInAula(reto.getLstIntegrantes())) mData.add(reto);
+                        //m if(existInAula(reto.getLstIntegrantes())) mData.add(reto);
 
                     }
                 }

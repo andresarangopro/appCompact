@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
 import com.example.felipearango.appcompact.clases.Comentario;
 import com.example.felipearango.appcompact.clases.DatosC;
 import com.example.felipearango.appcompact.clases.Entregable;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fragment_visualizar_retos, container, false);
+        Activity_Principal.toolbar.setTitle("Visualización Reto");
         transaction = getFragmentManager().beginTransaction();
         mn.inicializatedFireBase();
         initXml();
@@ -77,7 +80,7 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
         mDates = new  RecyclerAdapterDates(view.getContext(), mDataTest);
         mRecyclerDates.setAdapter( mDates);
-        listComents.add(new DatosC("Nombre","Comentario","img"));
+      //  listComents.add(new DatosC("Nombre","Comentario","img"));
         mRecyclerComent= (RecyclerView)view.findViewById(R.id.rv_coment) ;
         mRecyclerComent.setHasFixedSize(true);
         mLinearLayoutMan = new LinearLayoutManager(view.getContext());
@@ -134,7 +137,8 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
     }
 
     private void selectComentarios(String idReto){
-        mn.databaseReference.child("Retos").child(idReto).child("comentarios").addChildEventListener(new ChildEventListener() {
+        Query myTopPostsQuery = mn.databaseReference.child("Retos").child(idReto).child("comentarios").orderByChild("time");
+        myTopPostsQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 final Comentario comentario = dataSnapshot.getValue(Comentario.class);
@@ -184,10 +188,10 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
         switch(v.getId()){
             case R.id.iVsendComentario:{
                 FirebaseUser user = mn.firebaseAuth.getCurrentUser();
-                Comentario comentario = new Comentario(Util.geteTxt(etComentario), user.getUid());
-
+                long start = System.currentTimeMillis();
+                long time = (start*-1);
+                Comentario comentario = new Comentario(Util.geteTxt(etComentario), user.getUid(), time);
                 mn.addComentario("Retos",reto.getId(),"comentarios",comentario);
-
             }
         }
     }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
 import com.example.felipearango.appcompact.clases.AdapterMensajes;
 import com.example.felipearango.appcompact.clases.MensajeEnviar;
 import com.example.felipearango.appcompact.clases.MensajeRecibir;
@@ -64,7 +65,7 @@ public class FragmentChat extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragment_chat, container, false);
-
+        Activity_Principal.toolbar.setTitle("Chat");
         initComponents(view);
         adapter = new AdapterMensajes(view.getContext(), listMn);
         LinearLayoutManager l = new LinearLayoutManager(view.getContext());

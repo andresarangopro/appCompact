@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
 import com.example.felipearango.appcompact.clases.Entregable;
 import com.example.felipearango.appcompact.clases.Reto;
 import com.example.felipearango.appcompact.util.ManejoUser;
@@ -62,6 +63,7 @@ public class FragmentRetos extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_retos, container, false);
+        Activity_Principal.toolbar.setTitle("Publicar Retos");
         initXml();
         mu.inicializatedFireBase();
         return view;

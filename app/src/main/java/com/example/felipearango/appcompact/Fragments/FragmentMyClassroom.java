@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.felipearango.appcompact.R;
+import com.example.felipearango.appcompact.activitys.Activity_Principal;
 import com.example.felipearango.appcompact.clases.Aula;
 import com.example.felipearango.appcompact.models.RecyclerAdapterClassroom;
 import com.example.felipearango.appcompact.util.ManejoUser;
@@ -43,6 +44,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_fragment_my_classroom, container, false);
+        Activity_Principal.toolbar.setTitle("Aulas");
         mn.inicializatedFireBase();
         initListAulas();
         initComponents();

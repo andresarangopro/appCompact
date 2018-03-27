@@ -28,6 +28,7 @@ public class FragmentCreateClassroom extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_create_classroom, container, false);
+        Activity_Principal.toolbar.setTitle("Crea Tú Aula");
         initComponents();
         mn.inicializatedFireBase();
         btnPublicarAula.setOnClickListener(this);

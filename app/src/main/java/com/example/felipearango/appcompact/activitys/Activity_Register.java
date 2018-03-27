@@ -79,7 +79,7 @@ public class Activity_Register extends AppCompatActivity implements View.OnClick
                     if(validarPass()){
                         mn.registrarUser(Util.geteTxt(txtEmail),Util.geteTxt(txtPass), Activity_Register.this, tipoUser);
                     }else{
-                        txtConfirPass.setText("Las contraseñas no coinciden");
+                        txtConfirPass.setError("Las contraseñas no coinciden");
                     }
                 }
                 break;

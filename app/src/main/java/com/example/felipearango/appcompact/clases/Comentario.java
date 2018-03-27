@@ -12,14 +12,15 @@ public class Comentario {
 
     private String comentario;
     private String uidUser;
-
+    private long time;
     /////////////////
     //Constructores
     ///////////////
 
-    public Comentario(String comentario, String uidUser) {
+    public Comentario(String comentario, String uidUser, long time) {
         this.comentario = comentario;
         this.uidUser = uidUser;
+        this.time = time;
     }
 
     public Comentario(){}
@@ -42,6 +43,14 @@ public class Comentario {
 
     public void setUidUser(String uidUser) {
         this.uidUser = uidUser;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }
 
