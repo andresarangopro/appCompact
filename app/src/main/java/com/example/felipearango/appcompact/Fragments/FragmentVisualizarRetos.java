@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +120,7 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot entregable : dataSnapshot.child("entregable").getChildren()) {
                         Entregable ent = entregable.getValue(Entregable.class);
+                        Log.e("Err", ent.getTipoEntrega());
                         mDataTest.add(ent);
                     }
                     reto = dataSnapshot.getValue(Reto.class);
