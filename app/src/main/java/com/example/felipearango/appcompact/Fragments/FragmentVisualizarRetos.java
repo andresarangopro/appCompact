@@ -149,8 +149,9 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Usuario_estudiante ue = dataSnapshot.child(comentario.getUidUser()).getValue(Usuario_estudiante.class);
                         if(ue != null){
+                            int position = 0;
                             DatosC datosAdapterComent = new DatosC(ue.getCorreo(),comentario.getComentario(),ue.getFoto());
-                            listComents.add(datosAdapterComent);
+                            listComents.add(position,datosAdapterComent);
                             mComent = new RecyclerAdapterComentarios(view.getContext(), listComents);
                             mRecyclerComent.setAdapter( mComent);
                         }
