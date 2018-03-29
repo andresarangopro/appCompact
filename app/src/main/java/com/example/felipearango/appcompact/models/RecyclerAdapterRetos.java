@@ -26,7 +26,7 @@ public class RecyclerAdapterRetos extends RecyclerView.Adapter<RecyclerAdapterRe
     private ArrayList<Reto> listRetos;
     private Context mContext;
     private Bundle args = new Bundle();
-    private  FragmentTransaction transaction;
+    private FragmentTransaction transaction;
 
     public static class RecyclerAdapterHolder extends RecyclerView.ViewHolder {
         public TextView nombre;

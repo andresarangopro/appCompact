@@ -2,6 +2,7 @@ package com.example.felipearango.appcompact.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.example.felipearango.appcompact.util.ManejoUser;
 import com.example.felipearango.appcompact.util.Util;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Logger;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -34,11 +36,10 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
     ArrayList<Aula> lstAulas = new ArrayList<>();
     ArrayList<Aula> lstAulaStudentLog = new ArrayList<>();
 
-
     private RecyclerView mRecyclerDates;
     private RecyclerAdapterClassroom mDates;
     private LinearLayoutManager mLinearLayoutManager;
-
+    private FragmentTransaction transaction;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         mn.inicializatedFireBase();
         initListAulas();
         initComponents();
-
+        transaction = getFragmentManager().beginTransaction();
         return view;
     }
 
@@ -59,8 +60,13 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
 
-        mDates = new RecyclerAdapterClassroom(view.getContext(), lstAulas);
-        mRecyclerDates.setAdapter( mDates);
+        if(RecyclerAdapterClassroom.add == null || !RecyclerAdapterClassroom.add ){
+            mDates = new RecyclerAdapterClassroom(view.getContext(), lstAulas, Boolean.TRUE, transaction);
+        }else{
+            mDates = new RecyclerAdapterClassroom(view.getContext(), lstAulas, transaction);
+        }
+
+        mRecyclerDates.setAdapter(mDates);
     }
 
 
@@ -73,7 +79,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
-            case R.id.btnAggUserAula:
+            case R.id.btnAggUserAula:{
                 if (!Util.emptyCampMSG(txtKeyAula, "Por favor ingrese el codigo del aula")) {
                     Aula aula = new Aula();
                     aula = findAula(txtKeyAula.getText().toString());
@@ -93,6 +99,8 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                         txtKeyAula.setError("Esta aula no existe");
                     }
                 }
+                break;
+            }
         }
 
     }
@@ -102,18 +110,20 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot aula:dataSnapshot.getChildren()) {
-                    Aula a = aula.getValue(Aula.class);
-                    lstAulas.add(a);
-                    Log.e("aula", a.getKey()+ " ");
-                    if(a != null && !a.getLstIntegrantes().get(0).equals(" ")) {
-                        for (String student : a.getLstIntegrantes()) {
-                            Log.e("stu", student+ " ");
-                            if (student.equals(mn.firebaseUser.getEmail()))
-                                lstAulaStudentLog.add(a);
+                    try{
+                        Aula a = aula.getValue(Aula.class);
+                        lstAulas.add(a);
+                        if(a != null && !a.getLstIntegrantes().get(0).equals(" ")) {
+                            for (String student : a.getLstIntegrantes()) {
+                                if (student.equals(mn.firebaseUser.getEmail()))
+                                    lstAulaStudentLog.add(a);
+                            }
                         }
+                    }catch (Exception ex){
+                        
                     }
                 }
-             //  initXml();vb
+                initXml();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

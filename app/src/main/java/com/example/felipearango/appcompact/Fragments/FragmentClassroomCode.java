@@ -1,5 +1,7 @@
 package com.example.felipearango.appcompact.Fragments;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import com.example.felipearango.appcompact.R;
 import com.example.felipearango.appcompact.activitys.Activity_Principal;
 import com.example.felipearango.appcompact.clases.Usuario_estudiante;
+import com.example.felipearango.appcompact.util.Keys;
+import com.example.felipearango.appcompact.util.ManejoUser;
 import com.example.felipearango.appcompact.models.RecyclerAdapterAddStudent;
 import com.example.felipearango.appcompact.util.ManejoUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,8 +39,10 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
     private EditText etEmail;
     private TextView tvKey;
     private ManejoUser mn = new ManejoUser();
-    final ArrayList<Usuario_estudiante> lstUser = new ArrayList<>();
-    final ArrayList<String> lstEstudiantes = new ArrayList<>();
+    private Bundle args;
+    private ArrayList<Usuario_estudiante> lstUser = new ArrayList<>();
+    private ArrayList<String> lstEstudiantes = new ArrayList<>();
+    private Boolean datos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
         setRecycler();
         initComponents();
         initListStudents();
+        setRecycler();
         return view;
     }
 
@@ -58,7 +65,7 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new RecyclerAdapterAddStudent(view.getContext(), mData);
+        adapter = new RecyclerAdapterAddStudent(view.getContext(), mData.size() == 0 ? mData : convertToStudents(mData));
         recycler.setAdapter(adapter);
     }
 
@@ -68,7 +75,17 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
         btnPublicarAula = view.findViewById(R.id.btnPublicarAula);
         tvKey = view.findViewById(R.id.tvKeyAula);
         mn.inicializatedFireBase();
-        tvKey.setText(FragmentCreateClassroom.key_aula);
+        args = getArguments();
+        if(args != null){
+            datos = args.getBoolean("datos", Boolean.FALSE);
+            if(datos != null && datos){
+                lstEstudiantes = args.getStringArrayList("integrantes");
+                tvKey.setText(args.getString("key"));
+            }
+        }else{
+            tvKey.setText(FragmentCreateClassroom.key_aula);
+        }
+
         btnAdd.setOnClickListener(this);
         btnPublicarAula.setOnClickListener(this);
     }
@@ -119,6 +136,16 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
                     Usuario_estudiante u = user.getValue(Usuario_estudiante.class);
                     lstUser.add(u);
                 }
+                if(datos != null && datos){
+                    ArrayList<String> data = convertToStudents(lstEstudiantes);
+                    for (int i = 0; i < data.size(); i++) {
+                        int position = 0;
+                        mData.add(position, data.get(i));
+                        adapter.notifyItemInserted(position);
+                        adapter.notifyDataSetChanged();
+                        recycler.scrollToPosition(position);
+                    }
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -141,5 +168,17 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
             }
         }
         return false;
+    }
+
+    private ArrayList<String> convertToStudents(ArrayList<String> lstEstudiantesIds){
+        ArrayList<String> userEmails = new ArrayList<>();
+        for (String stdid : lstEstudiantesIds) {
+            for (Usuario_estudiante user: lstUser) {
+                if(user.getUid().equals(stdid)){
+                    userEmails.add(user.getCorreo());
+                }
+            }
+        }
+        return userEmails;
     }
 }
