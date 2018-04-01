@@ -118,7 +118,7 @@ public class FragmentMyClassroom extends Fragment implements View.OnClickListene
                             }
                         }
                     }catch (Exception ex){
-                        
+
                     }
                 }
                 initXml();
