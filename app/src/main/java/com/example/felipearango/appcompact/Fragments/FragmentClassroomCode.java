@@ -151,7 +151,6 @@ public class FragmentClassroomCode extends Fragment implements View.OnClickListe
 
             }
         });
-
     }
 
     /**
