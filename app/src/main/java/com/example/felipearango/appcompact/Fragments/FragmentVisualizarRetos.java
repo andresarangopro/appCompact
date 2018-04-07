@@ -48,7 +48,7 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
 
     private RecyclerView mRecyclerComent;
     private RecyclerAdapterComentarios mComent;
-    private LinearLayoutManager mLinearLayoutMan;
+    private RecyclerView.LayoutManager mLinearLayoutMan;
 
     private ManejoUser mn =new  ManejoUser();
     private ImageView iVsendComentario;
@@ -71,14 +71,18 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
     }
 
     private void initXml(){
+
         mRecyclerDates = view.findViewById(R.id.rv_fechas) ;
         mRecyclerDates.setHasFixedSize(true);
+
         mLinearLayoutManager = new LinearLayoutManager(view.getContext());
         mRecyclerDates.setLayoutManager(mLinearLayoutManager);
+
         mDates = new  RecyclerAdapterDates(view.getContext(), mDataTest);
-        mRecyclerDates.setAdapter( mDates);
+        mRecyclerDates.setAdapter(mDates);
+
         listComents.add(new DatosC("Nombre","Comentario","img"));
-        mRecyclerComent= (RecyclerView)view.findViewById(R.id.rv_coment) ;
+        mRecyclerComent= view.findViewById(R.id.rv_coment) ;
         mRecyclerComent.setHasFixedSize(true);
         mLinearLayoutMan = new LinearLayoutManager(view.getContext());
         mRecyclerComent.setLayoutManager(mLinearLayoutMan);
@@ -98,13 +102,13 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
 
 
     private void textTextView(){
-        tvEncargado.setText(reto.getEmailResponsable());
+/*        tvEncargado.setText(reto.getEmailResponsable());
         tvNombre.setText(reto.getNombre());
         tvDescripcion.setText(reto.getDescripcion());
         tvTipo.setText(reto.getTipoReto());
         tvIndividualGrupo.setText(reto.getIndividualOGrupo());
         tvNumIntegrantes.setText(reto.getNumIntegrante());
-        tvPrivacidad.setText(reto.getPrivacidad());
+        tvPrivacidad.setText(reto.getPrivacidad());*/
     }
 
     private void selectEntregables(){
@@ -116,13 +120,15 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot entregable : dataSnapshot.child("entregable").getChildren()) {
                         Entregable ent = entregable.getValue(Entregable.class);
+                        int position = mDataTest.size();
                         mDataTest.add(ent);
+                        mDates.notifyItemInserted(position);
+                        mDates.notifyDataSetChanged();
+                        mRecyclerDates.scrollToPosition(position);
                     }
                     reto = dataSnapshot.getValue(Reto.class);
                     textTextView();
-                    mDates  = new RecyclerAdapterDates(view.getContext(), mDataTest);
-                    mRecyclerDates.setAdapter(mDates);
-                    selectComentarios(reto.getId());
+                   // selectComentarios(reto.getId());
                 }
 
                 @Override
@@ -133,7 +139,8 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
         }
     }
 
-    private void selectComentarios(String idReto){
+    private void
+    selectComentarios(String idReto){
         mn.databaseReference.child("Retos").child(idReto).child("comentarios").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -146,7 +153,7 @@ public class FragmentVisualizarRetos extends Fragment implements View.OnClickLis
                             DatosC datosAdapterComent = new DatosC(ue.getCorreo(),comentario.getComentario(),ue.getFoto());
                             listComents.add(datosAdapterComent);
                             mComent = new RecyclerAdapterComentarios(view.getContext(), listComents);
-                            mRecyclerComent.setAdapter( mComent);
+                            mRecyclerComent.setAdapter(mComent);
                         }
                     }
 
